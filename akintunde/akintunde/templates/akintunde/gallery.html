@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .container{
+        border-style: groove;
+        margin: 5rem 20rem 20rem 20rem;
+        padding: 0px 20px 20px 20px;
+    }
+    a{
+        float: right;
+        margin: 2px 2px 2px 2px;
+    }
+</style>
+
+
+
+    <h1>GALLERY</h1>
+
+    <div class="container">
+
+        <a href="{% url 'create-gallery' %}">create</a>
+
+        
+        {% for gal in gallery %}
+        <br>
+            {{gal.category}}
+
+            {{gal.title}}
+        
+            
+            {% if gal.image %} 
+            <img src = "{{gal.image.url}}" width="200" height="200">
+            {% endif %}    
+            
+            {{gal.image_caption}}
+            
+            {{gal.image_description}}
+
+            <a href="{% url 'edit-gallery' gal.id %}" >Edit</a>
+            
+            <a href="{% url 'delete-gallery' gal.id %}" >Delete</a>
+        {% endfor %}
+
+        
+            
+    </div>
+
+{% endblock content %}
+    

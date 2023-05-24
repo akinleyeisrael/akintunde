@@ -1,0 +1,44 @@
+{% extends 'main.html' %} 
+{% block content %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+
+ {{ form.as_p }} 
+
+ 
+    
+   {% comment %} <p>
+    <label for="id_category">Category:</label>
+    <select name="category" required id="id_category">
+      {% for category in categories %}
+      <option value="{{ category.title }}">{{ category.title }}</option>
+      {% endfor %}
+    </select>
+  </p>
+
+  <p>
+    <label for="id_title">Title:</label>
+    {{form.title}}
+  </p>
+
+  <p>
+    <label for="id_image">Image:</label>
+    {{form.image}}
+  </p>
+
+  <p>
+    <label for="id_image_caption">Image caption:</label>
+    {{form.image_caption}}
+  </p>
+
+  <p>
+    <label for="id_image_description">Image description:</label>
+{{form.image_description}}
+    
+  </p>  {% endcomment %}
+
+  <input type="submit" value="create" />
+</form>
+
+{% endblock content %}
