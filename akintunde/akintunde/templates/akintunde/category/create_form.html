@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+  
+
+  <form action="" method="POST" enctype="multipart/form">
+    {% csrf_token %} 
+   
+    {{form.as_p}}
+
+    <input type="submit" value="create" />
+    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
+  
+  </form>
+
+
+{% endblock content %}
+  

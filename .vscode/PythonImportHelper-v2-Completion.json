@@ -32,6 +32,38 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -57,6 +89,14 @@
         "documentation": {}
     },
     {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -73,19 +113,19 @@
         "documentation": {}
     },
     {
-        "label": "model",
-        "importPath": "pyexpat",
-        "description": "pyexpat",
-        "isExtraImport": true,
-        "detail": "pyexpat",
-        "documentation": {}
-    },
-    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
         "isExtraImport": true,
         "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
         "documentation": {}
     },
     {
@@ -153,27 +193,43 @@
         "documentation": {}
     },
     {
-        "label": "About",
-        "importPath": "akintunde.models",
-        "description": "akintunde.models",
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
         "isExtraImport": true,
-        "detail": "akintunde.models",
+        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
-        "label": "Gallery",
-        "importPath": "akintunde.models",
-        "description": "akintunde.models",
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
         "isExtraImport": true,
-        "detail": "akintunde.models",
+        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
-        "label": "Category",
-        "importPath": "akintunde.models",
-        "description": "akintunde.models",
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
         "isExtraImport": true,
-        "detail": "akintunde.models",
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
         "documentation": {}
     },
     {
@@ -236,6 +292,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.migrations.0002_alter_blog_image_alter_gallery_image",
+        "description": "akintunde.akintunde.migrations.0002_alter_blog_image_alter_gallery_image",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('akintunde', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='blog',\n            name='image',\n            field=models.ImageField(blank=True, upload_to='images/blog'),\n        ),",
+        "detail": "akintunde.akintunde.migrations.0002_alter_blog_image_alter_gallery_image",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.migrations.0003_contact",
+        "description": "akintunde.akintunde.migrations.0003_contact",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('akintunde', '0002_alter_blog_image_alter_gallery_image'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Contact',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=255)),",
+        "detail": "akintunde.akintunde.migrations.0003_contact",
+        "documentation": {}
+    },
+    {
         "label": "AkintundeConfig",
         "kind": 6,
         "importPath": "akintunde.akintunde.apps",
@@ -249,7 +323,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.forms",
         "description": "akintunde.akintunde.forms",
-        "peekOfCode": "class AboutForm(forms.ModelForm):\n    class Meta:\n        model = About\n        fields = '__all__'\n        exclude = ['host']\nclass GalleryForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = '__all__'\n        exclude = ['host']",
+        "peekOfCode": "class AboutForm(forms.ModelForm):\n    class Meta:\n        model = About\n        fields = \"__all__\"\n        widgets = {\n            'biography': forms.Textarea(attrs={'class':'form-control','placeholder':'Enter your biography'})\n        }\n        exclude = [\"host\"]\nclass GalleryForm(forms.ModelForm):\n    class Meta:",
         "detail": "akintunde.akintunde.forms",
         "documentation": {}
     },
@@ -258,7 +332,43 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.forms",
         "description": "akintunde.akintunde.forms",
-        "peekOfCode": "class GalleryForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = '__all__'\n        exclude = ['host']",
+        "peekOfCode": "class GalleryForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = \"__all__\"\n        exclude = [\"host\"]\nclass GalleryExtendedForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = [\"title\", \"image_description\", \"image_caption\"]\nclass CategoryForm(forms.ModelForm):",
+        "detail": "akintunde.akintunde.forms",
+        "documentation": {}
+    },
+    {
+        "label": "GalleryExtendedForm",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.forms",
+        "description": "akintunde.akintunde.forms",
+        "peekOfCode": "class GalleryExtendedForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = [\"title\", \"image_description\", \"image_caption\"]\nclass CategoryForm(forms.ModelForm):\n    class Meta:\n        model = Category\n        fields = [\"title\"]  # only title is needed\nclass BlogForm(forms.ModelForm):\n    class Meta:",
+        "detail": "akintunde.akintunde.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryForm",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.forms",
+        "description": "akintunde.akintunde.forms",
+        "peekOfCode": "class CategoryForm(forms.ModelForm):\n    class Meta:\n        model = Category\n        fields = [\"title\"]  # only title is needed\nclass BlogForm(forms.ModelForm):\n    class Meta:\n        model = Blog\n        fields = \"__all__\"\n        exclude = [\"host\", \"image_description\"]  # exclude image_description\nclass ContactForm(forms.ModelForm):",
+        "detail": "akintunde.akintunde.forms",
+        "documentation": {}
+    },
+    {
+        "label": "BlogForm",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.forms",
+        "description": "akintunde.akintunde.forms",
+        "peekOfCode": "class BlogForm(forms.ModelForm):\n    class Meta:\n        model = Blog\n        fields = \"__all__\"\n        exclude = [\"host\", \"image_description\"]  # exclude image_description\nclass ContactForm(forms.ModelForm):\n    class Meta:\n        model = Contact\n        fields = \"__all__\"",
+        "detail": "akintunde.akintunde.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ContactForm",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.forms",
+        "description": "akintunde.akintunde.forms",
+        "peekOfCode": "class ContactForm(forms.ModelForm):\n    class Meta:\n        model = Contact\n        fields = \"__all__\"",
         "detail": "akintunde.akintunde.forms",
         "documentation": {}
     },
@@ -267,7 +377,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class About(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    biography = models.TextField(blank=True)\n    def __str__(self):\n        return self.biography   #return the string field\n#foreign\nclass Category(models.Model):\n    title = models.CharField(null=True, max_length=200) #blankc=true means the filed can be blank\n    def __str__(self):\n        return self.title",
+        "peekOfCode": "class About(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    biography = models.TextField(blank=True, null=True)\n    def __str__(self):\n        return self.biography   #return the string field\n#foreign\nclass Category(models.Model):\n    title = models.CharField(null=True, max_length=200) #blankc=true means the filed can be blank\n    def __str__(self):\n        return self.title",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -276,7 +386,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class Category(models.Model):\n    title = models.CharField(null=True, max_length=200) #blankc=true means the filed can be blank\n    def __str__(self):\n        return self.title\nclass Gallery(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    title = models.CharField(max_length=200)  #must specify leng\n    image = models.ImageField(upload_to='images', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)",
+        "peekOfCode": "class Category(models.Model):\n    title = models.CharField(null=True, max_length=200) #blankc=true means the filed can be blank\n    def __str__(self):\n        return self.title\nclass Gallery(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    title = models.CharField(max_length=200)  #must specify leng\n    image = models.ImageField(upload_to='images/gallery', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -285,7 +395,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class Gallery(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    title = models.CharField(max_length=200)  #must specify leng\n    image = models.ImageField(upload_to='images', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)\n    image_description = models.TextField(null=True, blank=True)\n    def __str__(self):\n        return self.title\nclass Blog(models.Model):",
+        "peekOfCode": "class Gallery(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    title = models.CharField(max_length=200)  #must specify leng\n    image = models.ImageField(upload_to='images/gallery', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)\n    image_description = models.TextField(null=True, blank=True)\n    def __str__(self):\n        return self.title\nclass Blog(models.Model):",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -294,7 +404,16 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class Blog(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    description = models.TextField(null=True,blank=True)\n    title = models.CharField(max_length=200)\n    image = models.ImageField(upload_to='static/img/blog', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)\n    image_description = models.TextField(null=True, blank=True)\n    def __str__(self):\n        return self.title",
+        "peekOfCode": "class Blog(models.Model):\n    host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    description = models.TextField(null=True,blank=True)\n    title = models.CharField(max_length=200)\n    image = models.ImageField(upload_to='images/blog', blank=True)\n    image_caption = models.CharField(max_length=200, null=True, blank=True)\n    image_description = models.TextField(null=True, blank=True)\n    def __str__(self):\n        return self.title",
+        "detail": "akintunde.akintunde.models",
+        "documentation": {}
+    },
+    {
+        "label": "Contact",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.models",
+        "description": "akintunde.akintunde.models",
+        "peekOfCode": "class Contact(models.Model):\n    name = models.CharField(max_length=255)\n    email = models.EmailField()\n    subject = models.CharField(max_length=255)\n    message = models.TextField()\n    def __str__(self):\n        return self.subject\n#foreign\n# class Image(models.Model):  \n#     image_file = models.ImageField(upload_to='static/img')",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -303,8 +422,26 @@
         "kind": 5,
         "importPath": "akintunde.akintunde.urls",
         "description": "akintunde.akintunde.urls",
-        "peekOfCode": "urlpatterns = [\n    path('',views.home, name='home'),\n    path('about/', views.about, name='about'),\n    path('about/create',views.createAbout, name=\"create-about\"),\n    path('about/edit/<str:pk>/', views.editAbout, name=\"edit-about\"),\n    path('about/delete/<str:pk>/', views.deleteAbout, name=\"delete-about\"),\n    path('gallery', views.gallery, name=\"gallery\"),\n    path('gallery/create/', views.createGallery, name=\"create-gallery\"),\n     path('gallery/edit/<str:pk>/', views.editGallery, name=\"edit-gallery\"),\n     path('gallery/delete/<str:pk>/', views.deleteGallery, name=\"delete-gallery\")",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.home, name=\"home\"),\n    path(\"login/\", views.loginPage, name=\"login\"),\n    path(\"logout/\", views.logoutUser, name=\"logout\"),\n    path(\"about/\", views.about, name=\"about\"),\n    path(\"about/create\", views.createAbout, name=\"create-about\"),\n    path(\"about/edit/<str:pk>/\", views.editAbout, name=\"edit-about\"),\n    path(\"about/delete/<str:pk>/\", views.deleteAbout, name=\"delete-about\"),\n    path(\"gallery\", views.gallery, name=\"gallery\"),\n    path(\"gallery/create/\", views.createGallery, name=\"create-gallery\"),",
         "detail": "akintunde.akintunde.urls",
+        "documentation": {}
+    },
+    {
+        "label": "loginPage",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def loginPage(request):\n    if request.user.is_authenticated:\n        return redirect(\"home\")\n    if request.method == \"POST\":\n        username = request.POST.get(\"username\")\n        password = request.POST.get(\"password\")\n        try:\n            user = User.objects.get(username=username)\n        except:\n            messages.error(request, \"User does not exist\")",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "logoutUser",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def logoutUser(request):\n    logout(request)\n    return redirect(\"login\")\ndef home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT",
+        "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
     {
@@ -312,7 +449,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def home(request):\n    return render(request,'akintunde/home.html')\ndef about(request): \n    about = About.objects.all()\n    context = {'about' : about}\n    return render(request,'akintunde/about.html', context)\n#CRUD : ABOUT\ndef createAbout(request):\n    form = AboutForm()\n    if request.method == 'POST':",
+        "peekOfCode": "def home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):\n    form = AboutForm()",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -321,7 +458,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def about(request): \n    about = About.objects.all()\n    context = {'about' : about}\n    return render(request,'akintunde/about.html', context)\n#CRUD : ABOUT\ndef createAbout(request):\n    form = AboutForm()\n    if request.method == 'POST':\n        form = AboutForm(request.POST)\n        if form.is_valid():",
+        "peekOfCode": "def about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):\n    form = AboutForm()\n    if request.method == \"POST\":\n        form = AboutForm(request.POST)",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -330,7 +467,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def createAbout(request):\n    form = AboutForm()\n    if request.method == 'POST':\n        form = AboutForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('about')\n    context = {'form': form}\n    return render(request, 'akintunde/about/create_form.html', context)\n#EDIT -> ABOUT",
+        "peekOfCode": "def createAbout(request):\n    form = AboutForm()\n    if request.method == \"POST\":\n        form = AboutForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect(\"about\")\n    context = {\"form\": form}\n    return render(request, \"akintunde/about/create_form.html\", context)\n# EDIT -> ABOUT",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -339,7 +476,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def editAbout(request,pk):\n    about = About.objects.get(id=pk)\n    form = AboutForm(instance=about)\n    if request.method == 'POST':\n        form = AboutForm(request.POST or None, instance=about)\n        if form.is_valid():\n            form.save()\n            return redirect('about')\n    context = {'form':form}\n    return render(request, 'akintunde/about/create_form.html', context)",
+        "peekOfCode": "def editAbout(request, pk):\n    about = About.objects.get(id=pk)\n    form = AboutForm(instance=about)\n    if request.user != about.host:\n        return HttpResponse(\"you are not allowed here\")\n    if request.method == \"POST\":\n        form = AboutForm(request.POST or None, instance=about)\n        if form.is_valid():\n            form.save()\n            return redirect(\"about\")",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -348,7 +485,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def deleteAbout(request,pk):\n    about = About.objects.get(id=pk)\n    if request.method == 'POST':\n        about.delete()\n        return redirect('about')\n    return render(request, 'akintunde/about/delete_form.html', {'obj':about })\n# ========================================================================================================\n# Gallery\n# ========================================================================================================\ndef gallery(request):",
+        "peekOfCode": "def deleteAbout(request, pk):\n    about = About.objects.get(id=pk)\n    if request.user != about.host:\n        return HttpResponse(\"you are not allowed here\")\n    if request.method == \"POST\":\n        about.delete()\n        return redirect(\"about\")\n    return render(request, \"akintunde/about/delete_form.html\", {\"obj\": about})\n# ========================================================================================================\n# Gallery",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -357,7 +494,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def gallery(request):\n    gallery = Gallery.objects.all()\n    context = {'gallery': gallery}\n    return render(request, 'akintunde/gallery.html', context)\ndef createGallery(request):\n    form = GalleryForm()\n    categories = Category.objects.all()\n    if request.method == 'POST':\n        form = GalleryForm(request.POST, request.FILES)\n        if form.is_valid():",
+        "peekOfCode": "def gallery(request):\n    gallery = Gallery.objects.all()\n    categories = Category.objects.all()  # allow to use category in gallery\n    context = {\"gallery\": gallery, \"categories\": categories}\n    return render(request, \"akintunde/gallery.html\", context)\n# def galleryExtended (request):\n#     gallery = GalleryExtendedForm()\n#     categories = Category.objects.all()  # allow to use category in gallery\n#     context = {\"gallery\": gallery, \"categories\": categories}\n#     return render(request, \"akintunde/gallery/gallery_extended.html\", context)",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -366,7 +503,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def createGallery(request):\n    form = GalleryForm()\n    categories = Category.objects.all()\n    if request.method == 'POST':\n        form = GalleryForm(request.POST, request.FILES)\n        if form.is_valid():\n            form.save()\n            return redirect('gallery')\n    context = {'form': form, 'categories': categories}\n    return render(request, 'akintunde/gallery/create_form.html', context)",
+        "peekOfCode": "def createGallery(request):\n    form = GalleryForm()\n    categories = Category.objects.all()\n    if request.method == \"POST\":\n        form = GalleryForm(request.POST, request.FILES)\n        if form.is_valid():\n            form.save()\n            return redirect(\"gallery\")\n    context = {\"form\": form, \"categories\": categories}\n    return render(request, \"akintunde/gallery/create_form.html\", context)",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -375,7 +512,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def editGallery(request, pk):\n    gallery = Gallery.objects.get(id=pk)\n    form = GalleryForm(instance=gallery)\n    categories = Category.objects.all()\n    if request.method == 'POST':\n        form = GalleryForm(request.POST, request.FILES, instance=gallery)\n        if form.is_valid():\n            form.save()\n            return redirect('gallery')\n    context = {'form': form, 'categories': categories}",
+        "peekOfCode": "def editGallery(request, pk):\n    gallery = Gallery.objects.get(id=pk)\n    form = GalleryForm(instance=gallery)\n    categories = Category.objects.all()\n    if request.method == \"POST\":\n        form = GalleryForm(request.POST, request.FILES, instance=gallery)\n        if form.is_valid():\n            form.save()\n            return redirect(\"gallery\")\n    context = {\"form\": form, \"categories\": categories}",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -384,7 +521,88 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def deleteGallery(request, pk):\n    gallery = Gallery.objects.get(id=pk)\n    if request.method == 'POST':\n        gallery.delete()\n        return redirect('gallery')\n    return render(request, 'akintunde/gallery/delete_form.html', {'obj':gallery })",
+        "peekOfCode": "def deleteGallery(request, pk):\n    gallery = Gallery.objects.get(id=pk)\n    if request.method == \"POST\":\n        gallery.delete()\n        return redirect(\"gallery\")\n    return render(request, \"akintunde/gallery/delete_form.html\", {\"obj\": gallery})\n# ========================================================================================================\n# Categories\n# ========================================================================================================\n# edit/gallery/category",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "createCategory",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def createCategory(request):\n    form = CategoryForm()\n    if request.method == \"POST\":\n        form = CategoryForm(request.POST)\n        if form.is_valid():\n            form.save()\n            return redirect(\"gallery\")  # redirect to gallery\n    context = {\"form\": form}\n    return render(request, \"akintunde/category/create_form.html\", context)\n@login_required(login_url=\"login\")",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "editCategory",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def editCategory(request, pk):\n    categories = Category.objects.get(id=pk)\n    form = CategoryForm(instance=categories)\n    if request.method == \"POST\":\n        form = CategoryForm(request.POST, instance=categories)\n        if form.is_valid():\n            form.save()\n            return redirect(\"gallery\")\n    context = {\"form\": form}\n    return render(request, \"akintunde/category/create_form.html\", context)",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "deleteCategory",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def deleteCategory(request, pk):\n    categories = Category.objects.get(id=pk)\n    if request.method == \"POST\":\n        categories.delete()\n        return redirect(\"gallery\")\n    return render(request, \"akintunde/category/delete_form.html\", {\"obj\": categories})\ndef blog(request):\n    blogs = Blog.objects.all()\n    context = {\"blogs\": blogs}\n    return render(request, \"akintunde/blog.html\", context)",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "blog",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def blog(request):\n    blogs = Blog.objects.all()\n    context = {\"blogs\": blogs}\n    return render(request, \"akintunde/blog.html\", context)\ndef blogExtended(request):\n    blogs = Blog.objects.all()\n    context = {\"blogs\": blogs}\n    return render(request, \"akintunde/blog/blog_extended.html\", context)\n@login_required(login_url=\"login\")\ndef createBlog(request):",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "blogExtended",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def blogExtended(request):\n    blogs = Blog.objects.all()\n    context = {\"blogs\": blogs}\n    return render(request, \"akintunde/blog/blog_extended.html\", context)\n@login_required(login_url=\"login\")\ndef createBlog(request):\n    form = BlogForm()\n    if request.method == \"POST\":\n        form = BlogForm(request.POST, request.FILES)\n        if form.is_valid():",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "createBlog",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def createBlog(request):\n    form = BlogForm()\n    if request.method == \"POST\":\n        form = BlogForm(request.POST, request.FILES)\n        if form.is_valid():\n            form.save()\n            return redirect(\"blog\")\n    context = {\"form\": form}\n    return render(request, \"akintunde/blog/create_form.html\", context)\n@login_required(login_url=\"login\")",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "editBlog",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def editBlog(request, pk):\n    blog = Blog.objects.get(id=pk)\n    form = BlogForm(instance=blog)\n    if request.method == \"POST\":\n        form = BlogForm(request.POST, request.FILES, instance=blog)\n        if form.is_valid():\n            form.save()\n            return redirect(\"blog\")\n    context = {\"form\": form}\n    return render(request, \"akintunde/blog/create_form.html\", context)",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "deleteBlog",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def deleteBlog(request, pk):\n    blog = Blog.objects.get(id=pk)\n    if request.method == \"POST\":\n        blog.delete()\n        return redirect(\"blog\")\n    return render(request, \"akintunde/blog/delete_form.html\", {\"obj\": blog})\n# ================================================================\n# CONTACT\n# ================================================================\ndef contact(request):",
+        "detail": "akintunde.akintunde.views",
+        "documentation": {}
+    },
+    {
+        "label": "contact",
+        "kind": 2,
+        "importPath": "akintunde.akintunde.views",
+        "description": "akintunde.akintunde.views",
+        "peekOfCode": "def contact(request):\n    if request.method == \"POST\":\n        form = ContactForm(request.POST)\n        if form.is_valid():\n            form.save()\n            name = request.POST.get(\"name\")\n            email = request.POST.get(\"email\")\n            subject = request.POST.get(\"subject\")\n            message = request.POST.get(\"message\")\n            # email_from = form.cleaned_data.get(\"email\")",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -438,7 +656,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'akintunde.apps.AkintundeConfig',   #registered the app\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\nMIDDLEWARE = [",
+        "peekOfCode": "INSTALLED_APPS = [\n    'akintunde.apps.AkintundeConfig',   #registered the app\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    ''\n]",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },
@@ -537,7 +755,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "STATIC_URL = '/static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_URL = '/static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\nDEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },
@@ -546,7 +764,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "MEDIA_URL = '/media/'\nSTATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "MEDIA_URL = '/media/'\nSTATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\nDEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },
@@ -555,7 +773,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "STATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATICFILES_DIR = [\n    BASE_DIR / 'static'  #registers static files\n]\nSTATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\nDEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },
@@ -564,7 +782,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "STATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR /'staticfiles'\nMEDIA_ROOT = os.path.join(BASE_DIR,'media')\nDEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },
@@ -573,7 +791,79 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR,'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR,'media')\nDEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_FROM_EMAIL",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = \"AKINTUNDEE <akinleyeisrael12@gmail.com>\"\nEMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_BACKEND = \"django.core.mail.backends.smtp.EmailBackend\"\nEMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_HOST = \"smtp.gmail.com\"\nEMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_HOST_USER = \"akinleyeisrael12@gmail.com\"\nEMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = 'exsciennjiptamzq'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_PORT = 587\nEMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_TLS",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_USE_TLS = True\nEMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "akintunde.mywebsite.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_SSL",
+        "kind": 5,
+        "importPath": "akintunde.mywebsite.settings",
+        "description": "akintunde.mywebsite.settings",
+        "peekOfCode": "EMAIL_USE_SSL = False\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },

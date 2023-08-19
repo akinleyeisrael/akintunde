@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% comment %} 
+{% if name %}
+<center>
+  <h2>Thanks {{name}}!</h2>
+  <p>Your email has been sent and will respond shortly...</p>
+</center>
+<br/><br/>
+{% else %}
+{% endif %} {% endcomment %}
+
+
+
+
+<form method="post" class=" col-md-4 container">
+  {% csrf_token %}
+
+    <h2>LOGIN</h2>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="text" name="username" class="form-control" placeholder="Email/UserName" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Password" id="exampleInputPassword1">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock  %}

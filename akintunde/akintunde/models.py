@@ -2,11 +2,12 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 #home page is static
 
 class About(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    biography = models.TextField(blank=True)
+    biography = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.biography   #return the string field
@@ -24,7 +25,7 @@ class Gallery(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200)  #must specify leng
-    image = models.ImageField(upload_to='images', blank=True)
+    image = models.ImageField(upload_to='images/gallery', blank=True)
     image_caption = models.CharField(max_length=200, null=True, blank=True)
     image_description = models.TextField(null=True, blank=True)
 
@@ -37,14 +38,24 @@ class Blog(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     description = models.TextField(null=True,blank=True)
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='static/img/blog', blank=True)
+    image = models.ImageField(upload_to='images/blog', blank=True)
     image_caption = models.CharField(max_length=200, null=True, blank=True)
     image_description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
-
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.subject
+    
+    
+    
 #foreign
 # class Image(models.Model):  
 #     image_file = models.ImageField(upload_to='static/img')

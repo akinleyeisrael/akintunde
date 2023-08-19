@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block content %}
+<!--Section: C<!-- Wrapper container -->
+{% if name %}
+<center>
+    <h2>Thanks {{name}} </h2>
+    <p>We received your email and will respond shortly</p>
+</center>
+{% endif %}
+
+<br/>
+
+<div class="container py-4">
+
+    <!-- Bootstrap 5 starter form -->
+    <form method="post" id="contactForm" action="{% url 'contact' %}">
+     
+    {% csrf_token %}
+      <!-- Name input -->
+      <div class="mb-3">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required"  name="name" />
+      </div>
+  
+      <!-- Email address input -->
+      <div class="mb-3">
+        <label class="form-label" for="emailAddress">Email Address</label>
+        <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required, email" name="email" />
+      </div>
+
+        <!-- Name input -->
+        <div class="mb-3">
+            <label class="form-label" for="subject">Subject</label>
+            <input class="form-control" id="subject" type="text" placeholder="Subject" data-sb-validations="required" name="subject" />
+          </div>
+  
+      <!-- Message input -->
+      <div class="mb-3">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required" name="message"></textarea>
+      </div>
+  
+      <!-- Form submit button -->
+      <div class="d-grid">
+        <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+      </div>
+  
+    </form>
+  
+  </div>
+
+<!--Section: Contact v.2-->
+{% endblock content %}
