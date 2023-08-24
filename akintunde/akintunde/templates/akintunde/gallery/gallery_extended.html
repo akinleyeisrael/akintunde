@@ -1,90 +1,21 @@
 {% extends 'main.html' %}
 {% block content %}
-<style>
-    .container{
-        border-style: groove;
-        margin: 5rem 20rem 20rem 20rem;
-        padding: 0px 20px 20px 20px;
-    }
-    a{
-        float: right;
-        margin: 2px 2px 2px 2px;
-    }
-    .box{
-        width: 60px;
-        height: 50px;
-        margin: 0;
-        padding: 0;
-        border: 1px solid;
-        }
-    .container-category{ 
-            margin: -36.0rem 102rem 10rem 1rem;
-            border: groove;
-            
-        }
-
-    .container-category a{
-          float: left;
-          margin-left: 70px
-    }
-    .container-category p{
-            margin-bottom: 70px;
-    }
-</style>
-
-
 
     <h1>GALLERY</h1>
-
     <div class="container">
-
-        <a href="{% url 'create-gallery' %}">create</a>
-
-        
-        {% for gal in gallery %}
+       
         <br>
-            {{gal.category}}
-
-            {{gal.title}}
-        
-            
-            {% if gal.image %} 
-            <a href="{% url 'gallery-extended' %}">
-            <img src="{{gal.image.url}}" width="200" height="200" />
-      
+            cat:{{gallery.category}}
+           title: {{gallery.title}}
+            {% if gallery.image %}  
+            <img src="{{gallery.image.url}}" width="200" height="200" />
             {% endif %}
-             
-            
-            {{gal.image_caption}}
-            
-            {{gal.image_description}}
+            caption:{{gallery.image_caption}}
+            img desc:{{gallery.image_description}}
 
-            <a href="{% url 'edit-gallery' gal.id %}" >Edit</a>
-            
-            <a href="{% url 'delete-gallery' gal.id %}" >Delete</a>
-        {% empty %}
-        <h3>No photos found</h3>
-        {% endfor %}
-
-
-        
-            
+            <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
+      
+    
     </div>
-    <div class="container-category">
-        <small>category</small>
-        <p><a href="{% url 'create-category' %}">create</a><p>
-       
-       
-        {% for category in categories %}
-        <a href="{% url 'edit-category' category.id %}">Edit</a>
-        <a href="{% url 'delete-category' category.id %}">Delete</a>
-        <div class="box"> {{category.title}}</div>
-       
-        {% endfor %}
-
-    </div>
-  
-   
-
 {% endblock content %}
     

@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Video Library</h1>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'video-upload' %}">Upload Video</a>
+    {% endif %}
+    <ul id="video-table">
+      {% for video in videos %}
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'edit-video' video.id %}" >Edit</a>
+      <a href="{% url 'delete-video' video.id %}"  class="btn btn-warning btn-sm js-delete-video">Delete</a>
+      {% endif %}
+      <div class="row">
+          <div class="col-sm">
+              <li>
+                <h2>{{ video.title }}</h2>
+                {% if video.video_file %}
+                <video controls  width="320" height="240">
+                  <source src="{{ video.video_file.url }}" type="">
+                  Your browser does not support the video tag.
+                </video>
+                {% endif %}   
+                <p>{{ video.description|safe }}</p>
+                <p><span>Published: </span>{{video.upload_date|date}} </p>
+              </li>
+            <div>
+              {% empty%}
+              <p class="text-center bg-warning">No video available</p>
+      </div>
+      {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+

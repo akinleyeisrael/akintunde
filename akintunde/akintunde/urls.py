@@ -11,6 +11,7 @@ urlpatterns = [
     path("about/edit/<str:pk>/", views.editAbout, name="edit-about"),
     path("about/delete/<str:pk>/", views.deleteAbout, name="delete-about"),
     path("gallery", views.gallery, name="gallery"),
+    path("gallery/details/<str:pk>/", views.galleryExtended, name="gallery-extended"),
     path("gallery/create/", views.createGallery, name="create-gallery"),
     path("gallery/edit/<str:pk>/", views.editGallery, name="edit-gallery"),
     path("gallery/delete/<str:pk>/", views.deleteGallery, name="delete-gallery"),
@@ -27,6 +28,11 @@ urlpatterns = [
     path("blog/create/", views.createBlog, name="create-blog"),
     path("blog/edit/<str:pk>/", views.editBlog, name="edit-blog"),
     path("blog/delete/<str:pk>/", views.deleteBlog, name="delete-blog"),
-    path("blog/content", views.blogExtended, name="blog-extended"),
+    path("blog/details/<str:pk>/", views.blogExtended, name="blog-extended"),
     path("contact/", views.contact, name="contact"),
+    path("videos/", views.videos, name="videos"),
+    path("videos/uploadVideo/", views.upload_video, name="video-upload"),
+    path("videos/edit/<str:pk>/", views.edit_video, name="edit-video"),
+    path("videos/delete/<str:pk>/", views.deleteVideo, name="delete-video"),
 ]
+

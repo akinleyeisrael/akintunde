@@ -24,11 +24,11 @@
     {% endif %}
     <h1>ABOUT</h1>
 
-    
-{% for bio in about %}
 
+{% for bio in about %}
+ 
 	<div class="body">
-	        {{bio.biography}}
+	        {{bio.biography|safe}}
             {% if request.user.is_authenticated %}
             <a href="{% url 'edit-about' bio.id  %}">Edit</a>
             <a href="{% url 'delete-about' bio.id %}">Delete</a>

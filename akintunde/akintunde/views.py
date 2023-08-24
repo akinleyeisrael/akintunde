@@ -1,18 +1,30 @@
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .models import About, Gallery, Category, Blog
-
-from .forms import AboutForm, GalleryForm, CategoryForm, BlogForm, ContactForm
+from .models import About, Gallery, Category, Blog, Video
+from django.http import HttpResponse
+from .forms import (
+    AboutForm,
+    GalleryForm,
+    CategoryForm,
+    BlogForm,
+    ContactForm,
+    VideoForm,
+)
+from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.template import RequestContext
 
 
 # Create your views here.
 
+# custom 404 view
+def custom_404(request, exception):
+    return render(request, 'akintunde/partial/404.html', status=404)
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -25,12 +37,13 @@ def loginPage(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, "User does not exist")
+            messages.error(request, "")
 
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
+            messages.success(request, f"You are logged in as {username}")
             return redirect("home")
         else:
             messages.error(request, "Username or password is incorrect")
@@ -41,6 +54,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
+    messages.success(request, "User logged out")
     return redirect("login")
 
 
@@ -72,8 +86,7 @@ def createAbout(request):
 def editAbout(request, pk):
     about = About.objects.get(id=pk)
     form = AboutForm(instance=about)
-    if request.user != about.host:
-        return HttpResponse("you are not allowed here")
+
     if request.method == "POST":
         form = AboutForm(request.POST or None, instance=about)
         if form.is_valid():
@@ -86,8 +99,7 @@ def editAbout(request, pk):
 @login_required(login_url="login")
 def deleteAbout(request, pk):
     about = About.objects.get(id=pk)
-    if request.user != about.host:
-        return HttpResponse("you are not allowed here")
+
     if request.method == "POST":
         about.delete()
         return redirect("about")
@@ -100,23 +112,24 @@ def deleteAbout(request, pk):
 
 
 def gallery(request):
-    gallery = Gallery.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''  #set q to empty
+    gallery = Gallery.objects.filter(category__title__icontains=q)  #filter by category titile withou a case(upper or lower)
     categories = Category.objects.all()  # allow to use category in gallery
     context = {"gallery": gallery, "categories": categories}
     return render(request, "akintunde/gallery.html", context)
 
 
-# def galleryExtended (request):
-#     gallery = GalleryExtendedForm()
-#     categories = Category.objects.all()  # allow to use category in gallery
-#     context = {"gallery": gallery, "categories": categories}
-#     return render(request, "akintunde/gallery/gallery_extended.html", context)
+def galleryExtended (request,pk):
+    gallery = get_object_or_404(Gallery, id=pk)
+    categories = Category.objects.all()  # allow to use category in gallery
+    context = {"gallery": gallery, "categories": categories}
+    return render(request, "akintunde/gallery/gallery_extended.html", context)
 
 
 @login_required(login_url="login")
 def createGallery(request):
-    form = GalleryForm()
     categories = Category.objects.all()
+    form = GalleryForm()
     if request.method == "POST":
         form = GalleryForm(request.POST, request.FILES)
         if form.is_valid():
@@ -196,14 +209,24 @@ def deleteCategory(request, pk):
 
 
 def blog(request):
-    blogs = Blog.objects.all()
-    context = {"blogs": blogs}
+    blogs = Blog.objects.all().order_by('-created')
+    item_per_page = 2
+    paginator = Paginator(blogs, item_per_page)
+    page_number = request.GET.get('page', 1)  #get_current page num
+    
+    try:
+        page = paginator.page(page_number)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    context = {"blogs": page}
     return render(request, "akintunde/blog.html", context)
 
 
-def blogExtended(request):
-    blogs = Blog.objects.all()
-    context = {"blogs": blogs}
+def blogExtended(request, pk):
+    blog = get_object_or_404(Blog,id=pk) 
+    context = {"blog": blog}
     return render(request, "akintunde/blog/blog_extended.html", context)
 
 
@@ -249,6 +272,7 @@ def deleteBlog(request, pk):
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
+        
         if form.is_valid():
             form.save()
             name = request.POST.get("name")
@@ -264,5 +288,63 @@ def contact(request):
                 ["akinleyeisrael12@gmail.com"],
                 fail_silently=False,
             )
-
+            messages.success(request,"Thank you for contacting")
+        else:
+            messages.error(request,"Something went wrong.Try again") 
+           
     return render(request, "akintunde/contact.html", {})
+
+
+def videos(request):
+    videos = Video.objects.all().order_by("-upload_date")
+    context = {"videos": videos}
+    return render(request, "akintunde/videos.html", context)
+
+
+@login_required(login_url="login")
+def upload_video(request):
+    form = VideoForm()
+    if request.method == "POST":
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Upload success")
+            return redirect("videos")
+    context = {"form": form}
+    return render(request, "akintunde/video/upload_video.html", context)
+
+
+@login_required(login_url="login")
+def edit_video(request, pk):
+    videos = Video.objects.get(id=pk)
+    form = VideoForm(instance=videos)
+    if request.method == "POST":
+        form = VideoForm(request.POST, request.FILES, instance=videos)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Updated")
+            return redirect("videos")
+    context = {"form": form}
+    return render(request, "akintunde/video/upload_video.html", context)
+
+
+def deleteVideo(request, pk):
+    try:
+        video = Video.objects.get(id=pk)
+    except Video.DoesNotExist:
+        # Handle the case where the video doesn't exist
+        return HttpResponse(request, "video not found")
+
+    if request.method == "POST":
+        try:
+            video.delete()
+            messages.success(request, "Deleted")
+            return redirect("videos")  # Redirect to the appropriate URL name
+        except Exception as e:
+            # Handle any potential errors that occur during deletion
+            return HttpResponse(
+                request, "error occured during deletion", {"error": str(e)}
+            )
+
+    context = {"video": video}
+    return render(request, "akintunde/video/delete_video.html", context)

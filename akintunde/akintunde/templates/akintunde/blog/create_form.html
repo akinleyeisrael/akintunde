@@ -1,21 +1,18 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
 
-
-{% block content %}
-  
-
-  <form action="" method="POST" enctype="multipart/form-data">
+<div class="col col-md-5 container">
+  {% if form.instance.id %}
+  <h2>Edit Blog</h2>
+  {% else %}
+  <h2>Create Blog</h2>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %} 
-   
+    {{form.media}} 
     {{form.as_p}}
-
-    
-
-    <input type="submit" value="create" />
-    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-  
+    <button type="submit" class="btn btn-success"  ><i class="fa-solid fa-circle-plus fa-beat"></i>   Create</button>
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">
+      <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
   </form>
-
-
-{% endblock content %}
-  
+  <div>{% endblock content %}</div>
+</div>

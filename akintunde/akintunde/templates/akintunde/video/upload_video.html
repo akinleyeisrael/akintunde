@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="col col-md-5 container ">
+  {% if form.instance.id %}
+  <h2>Edit video</h2>
+  {% else %}
+  <h2>Upload video</h2>
+  {% endif %}
+  
+  
+    <form  method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form.media}}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Upload</button>
+      <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">Go Back</a>
+    </form>
+</div>
+{% endblock %}
