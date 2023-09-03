@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.core.validators import EmailValidator
-
+from embed_video.fields import EmbedVideoField
 
 #home page is static
 
@@ -66,6 +67,7 @@ class Contact(models.Model):
     
     
 class Video(models.Model):
+    videourl = EmbedVideoField(blank=False, null=False)
     title = models.CharField(max_length=100)
     description = RichTextField(null=True,blank=True)
     video_file = models.FileField(upload_to='videos/')
@@ -84,3 +86,11 @@ class Video(models.Model):
 #     def __str__(self):
 #         return self.title
 
+
+class Exhibition(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    image = models.ImageField(upload_to='images/exhibitions', blank=True)
+    description = RichTextUploadingField(True, blank=True)
+
+def __str__(self):
+        return self.title

@@ -1,38 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-inverse bg-black absolute top-0 left-0 right-0 fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
 
-<style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    margin-left: 0;
-    
-  }
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    padding: 8px;
-  }
-</style>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggle-nav-center" aria-controls="navbar-toggle-nav-center" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+        </button><!-- / navbar-toggler -->
 
-<ul>
-<li><a href="{% url 'home' %}">Home</a></li>
-<li><a href="{% url 'about' %}">About</a></li>
-<li><a href="{% url 'gallery' %}">Gallery</a></li>
-<li><a href="{% url 'blog' %}">Blog</a></li>
-<li><a href="{% url 'contact' %}">Contact</a></li>
-<li><a href="{% url 'videos' %}">Videos</a></li>
+        <div class="collapse navbar-collapse" id="navbar-toggle-nav-center">
+            <ul class="navbar-nav m-x-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="dropdown1" aria-haspopup="true" aria-expanded="false">HOME</a>
+                </li><!-- / dropdown -->
 
-{% if request.user.is_authenticated %}
-<li><a href="{% url 'logout' %}">Logout</a></li>
-{% else %}
-<li><a href="{% url 'login' %}">Login</a></li>
-{% endif %}
-</ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'about' %}" id="dropdown2"  aria-haspopup="true" aria-expanded="false">ABOUT</a>
+                </li><!-- / dropdown -->
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'gallery' %}" id="dropdown3"  aria-haspopup="true" aria-expanded="false">GALLERY</a>
+                    
+                </li><!-- / dropdown -->
 
-<br />
-<br />
-<hr />
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'videos' %}" id="dropdown4" aria-haspopup="true" aria-expanded="false">VIDEOS</a>
+                </li><!-- / dropdown -->
+
+                <li class="nav-item">
+                    <a class="nav-link last-menu-item" href="{% url 'blog' %}">BLOG</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link last-menu-item" href="">EXHIBITIONS</a>
+                </li>
+                
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link last-menu-item" href="{% url 'logout' %}">LOGOUT</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link last-menu-item" href="{% url 'login' %}">LOGIN</a>
+                </li>
+                {% endif %}
+
+
+               
+            </ul><!-- / navbar-nav -->
+
+            <ul class="navbar-button p-0 m-0 ml-30">
+                <li class="nav-item">
+                    <a href="{% url 'contact' %}" class="btn btn-sm btn-white"><i class="far fa-envelope fs-16 mr-5 va-middle"></i> <span class="va-middle">CONTACT</span></a>
+                </li>
+            </ul><!-- / navbar-button -->
+        </div><!-- / navbar-collapse -->
+    </div><!-- / container-fluid -->
+</nav>

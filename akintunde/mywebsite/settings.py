@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor'
+    'ckeditor', 
+    'embed_video',
   
   
 ]
@@ -138,11 +139,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+         'width': 1500,
+    },
+}
 
-DEFAULT_FROM_EMAIL = "AKINTUNDEE <akinleyeisrael12@gmail.com>"
+DEFAULT_FROM_EMAIL = "AKINTUNDEE <akintundeee52@gmail.com.com>"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "akinleyeisrael12@gmail.com"
+EMAIL_HOST_USER = "akintundeee52@gmail.com"
 EMAIL_HOST_PASSWORD = 'exsciennjiptamzq'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -165,7 +172,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-LOGIN_REDIRECT_URL = 'index'
-LOGIN_URL = 'login'
 
 

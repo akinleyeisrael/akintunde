@@ -1,0 +1,683 @@
+/**
+  * Plugin Name: Revolution lightbox.
+  * Plugin URI: https://webdesign-flash.ro/p/rl/
+  * Author: FWDesign
+  * Author URI: https://webdesign-flash.ro/
+  * Description: A pure Vanila JavaScript and touchable lightbox.
+  * Version: 3.0
+  * Tags: lightbox, touch, swipe, image, video, iframe, html
+  *
+  * Copyright (C) 2014 FWDesign - All Rights Reserved
+  */
+
+/* Import font. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+/* Counter. */
+.fwdrl-counter .text{
+	font: 400 14px Roboto, Arial;
+	color: #B9B9B9;
+	padding: 9px 9px !important;
+	background-color: rgba(0,0,0,.4) !important;
+}
+
+.fwdrl-counter.in .text{
+	text-align: center;
+	padding: 9px 8px !important;
+	transform-origin: top left;
+	transform: rotate(90deg) !important;
+	background-color:transparent !important;
+}
+
+
+/* Caption. */
+.fwdrl-caption{
+	text-align: center;
+}
+
+.fwdrl-caption .fwdrl-title{
+	font: 700 18px Roboto, Arial;
+	line-height: 21px;
+	margin: 21px 20px 0;
+	color: #FFFFFF;
+}
+
+.fwdrl-caption .fwdrl-desc{
+	font: 400 14px Roboto, Arial;
+	font-style: italic;
+	line-height: 19px;
+	margin: 5px 20px 0;
+	color: #E9E9E9;
+}
+
+.fwdrl-caption .fwdrl-desc strong{
+	color: #FFFFFF !important;
+}
+
+.fwdrl-caption .fwdrl-desc a{
+	text-decoration: none;
+    background-image: linear-gradient(#E9E9E9 calc(100% - 2px), #E9E9E9 1px);
+    background-position: 0 calc(100% + 1px);
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.3s ease-out, background 0.3s ease-out, border-color 0.3s ease-out;
+  	border-bottom: 1px solid rgba(233, 233, 233, 0.4);
+    color: #E9E9E9;
+}
+
+.fwdrl-caption .fwdrl-desc a:hover{
+    background-size: 100% 1px;
+    color: #FFFFFF;
+}
+
+
+/* Caption bottom out. */
+.fwdrl-caption.out .fwdrl-title{
+	margin: 21px 0 0;
+}
+
+.fwdrl-caption.out .fwdrl-desc{
+	margin: 5px 0 0;
+}
+
+@media screen and (max-width: 600px){
+	.fwdrl-caption.out .fwdrl-title{
+		margin: 21px 10px 0;
+	}
+
+	.fwdrl-caption.out .fwdrl-desc{
+		margin: 5px 10px 0;
+	}
+}
+
+
+/* Caption top/bottom in. */
+.fwdrl-caption.bottomin .background,
+.fwdrl-caption.topin .background{
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 8.85%, rgba(0, 0, 0, 0.171875) 38.54%, rgba(0, 0, 0, 0.510026) 68.75%, #000000 100%);
+	opacity: 0.6;
+}
+
+.fwdrl-caption.topin .background{
+	transform: rotate(180deg);
+}
+
+.fwdrl-caption.bottomin .fwdrl-title{
+	margin-top: 50px;
+}
+
+.fwdrl-caption.bottomin .fwdrl-desc{
+	margin-bottom: 28px;
+}
+
+.fwdrl-caption.bottomin.small-screen .fwdrl-title{
+	margin: 50px 10px 0;
+}
+
+.fwdrl-caption.bottomin.small-screen .fwdrl-desc{
+	margin: 5px 10px 15px;
+}
+
+.fwdrl-caption.topin .fwdrl-title{
+	margin-top: 29px;
+}
+
+.fwdrl-caption.topin .fwdrl-desc{
+	margin-bottom: 50px;
+}
+
+.fwdrl-caption.topin.small-screen .fwdrl-title{
+	margin: 15px 10px 0;
+}
+
+.fwdrl-caption.topin.small-screen .fwdrl-desc{
+	margin: 5px 10px 50px;
+}
+
+/* Share buttons. */
+.fwdrl-share{
+	width: 164px;
+	border-radius: 2px;
+	/* This is set by default in the settings, uncomment it to use it. */
+	/*background-color: #FFFFFF !important;*/ 
+}
+
+.fwdrl-share .fwdrl-pointer{
+	/* This is set by default in the settings, uncomment it to use it. */
+	/*background-color: #FFFFFF !important;*/
+}
+
+.fwdrl-share .fwdrl-text{
+	font: 400 14px Roboto, Arial;
+	text-align: center;
+	border-bottom: 1px solid #E3E3E3 !important;
+	padding: 13px 0 10px !important;
+	color: #1E1E1E;
+}
+
+.fwdrl-share .fwdrl-buttons-holder{
+	padding: 15px 18px 2px !important;
+}
+
+.fwdrl-share .fwdrl-share-button{
+	margin: 0 16px 10px 0 !important;
+}
+
+.fwdrl-share .fwdrl-share-button:nth-child(3n){
+	margin-right: 0 !important;
+}
+
+
+/* Video player. */
+video::cue,
+.fwdrl .EVPSubtitle{
+	font: 600 22px Roboto, Arial !important;
+	text-align:center !important;
+	color:#FFFFFF !important;
+	text-shadow: 0px 0px 1px #000000 !important;
+	line-height:28px !important;
+	margin:0 20px 20px !important;
+	padding: 0px !important;
+}
+
+@media screen and (max-width: 700px){
+	video::cue,
+	.fwdrl .EVPSubtitle{
+		font-size: 16px !important;
+		line-height:20px !important;
+		margin:0 20px 14px !important;
+	}
+}
+
+.fwdrl .fwdevp-autoplay-text{
+	font: 500 12px Roboto, Arial !important;
+	top: 30px !important;
+	left: 30px !important;
+	border-radius: 14px;
+	line-height: 14px !important;
+	padding: 6px 23px 6px 18px !important;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: #FFFFFF;
+
+	transition: background-color .3s ease-out, color .3s ease-out;
+}
+
+.fwdrl .fwdevp-autoplay-text:hover{
+	color: #000;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.fwdrl .fwdevp-autoplay-text:hover svg path{
+	fill: #111;
+}
+
+.fwdrl .fwdevp-autoplay-text svg{
+    transform: translate(6px, 2px);
+}
+
+.fwdrl .fwdevp-autoplay-text svg path{
+	transition: all .3s ease-out;
+	fill: #FFFFFF;
+}
+
+.fwdrl .fwdevp-time,
+.fwdrl .fwdevp-qaulity-button{
+	font: 400 13px Roboto, Arial !important;
+}
+
+.fwdrl .EVP-tooltip-text{
+	font: 400 13px Roboto, Arial !important;
+	padding: 5px 8px 5px !important;
+}
+
+.fwdrl .fwdevp-thubnails-preview-text{
+	font: 400 13px Roboto, Arial !important;
+	padding: 5px 8px 4px !important;
+}
+
+.fwdrl .fwdevp-skip,
+.fwdrl .fwdevp-ads{
+	font-family: Roboto, Arial !important;
+}
+
+.fwdevp-password-title,
+.fwdevp-password-label,
+.fwdevp-password-input{
+	font-family: Roboto, Arial !important;
+}
+
+
+/* HTML content form. */
+.fwdrl-html-content{
+	overflow: auto;
+	height: 100%;
+	text-align: center;
+	background: #FFF;
+}
+
+.fwdrl-html-content img{
+	margin: 50px auto 0 ;
+}
+
+.fwdrl-html-content h1{
+	font: 500 33px Roboto, Arial !important;
+	line-height: 39px;
+	max-width: 300px;
+	margin: 20px auto 0;
+	color: #111;
+}
+
+.fwdrl-html-content p{
+	font: 300 14px Roboto, Arial !important;
+	line-height: 24px !important;
+	margin: 16px 20px 30px;
+}
+
+.fwdrl-html-content input{
+	font: 300 14px Roboto, Arial !important;
+	width: 100%;
+	max-width: 274px;
+	border: 1px solid #FFF;
+	padding: 18px 30px;
+	background: #F5F5F5;
+}
+
+.fwdrl-html-content input:focus {
+    outline: none !important;
+    border: 1px solid #111;
+}
+
+.fwdrl-html-content h4{
+	font: 700 14px Roboto, Arial !important;
+	cursor: pointer;
+	width: 100%;
+	max-width: 274px;
+	margin: 11px auto 0;
+	padding: 18px 30px;
+	background: #570AB8;
+	color: #FFF;
+	transition: all .25s ease-out;
+}
+
+.fwdrl-html-content h4:hover{
+	background: #6B13DA;
+	color: #FFF;
+}
+
+
+/* Lightbox vector skin.*/
+.fwdrl-button{
+	position: relative !important;
+	width: 32px;
+	height: 32px;
+	font-size: 23px;
+	background-color:rgba(0,0,0,.4);
+	color:#B9B9B9;
+	transition: all .25s ease-out;
+}
+.fwdrl-button .fwdrl-icon{
+ 	position: absolute;
+}
+
+.fwdrl-button.selected{
+	background-color:rgba(0,0,0,.6) ;
+	color:#FFF;
+}
+
+.fwdrl-icon-close{
+	left: 4px;
+	top: 4px;
+}
+
+.fwdrl-icon-play,
+.fwdrl-icon-pause{
+	left: 5px;
+	top: 4px;
+}
+
+.fwdrl-icon-zoomin,
+.fwdrl-icon-zoomout{
+	left: 4px;
+	top: 4px;
+}
+
+.fwdrl-icon-fullscreen,
+.fwdrl-icon-normalscreen{
+	left: 4px;
+	top: 4px;
+}
+
+.fwdrl-icon-share{
+	left: 5px;
+	top: 4px;
+}
+
+.fwdrl-icon-next{
+	left: 6px;
+	top: 4px;
+}
+
+.fwdrl-icon-prev{
+	left: 4px;
+	top: 4px;
+}
+
+.fwdrl-share-button .fwdrl-button{
+	background-color: transparent;
+	color: #000;
+}
+
+.fwdrl-share-button .fwdrl-button.selected{
+	background-color: transparent;
+	color: #FFF;
+}
+
+.fwdrl-icon-facebook{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.facebook.selected{
+	background-color: #1877F2;
+}
+
+.fwdrl-icon-twitter{
+	top: 4px;
+	left: 5px;
+}
+
+.fwdrl-button.twitter.selected{
+	background-color: #1DA1F3;
+}
+
+.fwdrl-icon-linkedin{
+	top: 4px;
+	left: 5px;
+}
+
+.fwdrl-button.linkedin.selected{
+	background-color: #0A66C2;
+}
+
+.fwdrl-icon-tumblr{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.tumblr.selected{
+	background-color: #FF8A00;
+}
+
+.fwdrl-icon-pinterest{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.pinterest.selected{
+	background-color: #FF8A00;
+}
+
+.fwdrl-icon-reddit{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.reddit.selected{
+	background-color: #F74300;
+}
+
+.fwdrl-icon-buffer{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.buffer.selected{
+	background-color: #2C4BFF;
+}
+
+.fwdrl-icon-digg{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.digg.selected{
+	background-color: #2066A3;
+}
+
+.fwdrl-icon-blogger{
+	top: 4px;
+	left: 4px;
+}
+
+.fwdrl-button.blogger.selected{
+	background-color: #F74300;
+}
+
+
+/* Easy Video Player vector skin. */
+.fwdrl .EVPMainButtonsNormalState{
+	overflow: visible !important;
+	font-size: 26px !important;
+	color:#999 !important;
+}
+
+.fwdrl .EVPMainButtonsSelectedState{	
+	overflow: visible !important;
+	font-size:26px !important;
+	color:#FFF !important;
+}
+
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-play,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-play,
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-pause,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-pause{
+	position: relative;
+	left: 0;
+	top: 1px;
+}
+
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-sound,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-sound,
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-sound-off,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-sound-off{
+	position: relative;
+	left: 0;
+	top: 2px;
+}
+
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-cast,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-cast,
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-sound-uncast,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-sound-uncast,
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-fullscreen,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-fullscreen,
+.fwdrl .EVPMainButtonsNormalState .fwdrl-icon-sound-normalscreen,
+.fwdrl .EVPMainButtonsSelectedState .fwdrl-icon-sound-normalscreen{
+	position: relative;
+	top: 1px;
+}
+
+.fwdrl .table-fwdevp-button { 
+	display: table;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.fwdrl .table-cell-fwdevp-button {
+	position: static !important;
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.fwdrl .EVPLargePlayButtonNormalState{
+	position: absolute;
+	font-size: 36px;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	background-color: rgba(0,0,0,.4);
+	color:#BBB9BA;
+}
+
+.fwdrl .EVPLargePlayButtonNormalState .table-cell-fwdevp-button{
+	padding: 2px 0 0;
+}
+
+.fwdrl .EVPLargePlayButtonSelectedState{
+	position: absolute;
+	font-size: 36px;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	background-color: rgba(0,0,0,.6);
+	color:#FFF;
+}
+
+.fwdrl .EVPLargePlayButtonSelectedState .table-cell-fwdevp-button{
+	padding:2px 0 0;
+}
+
+
+/* Import vector font. */
+@font-face {
+  font-family: 'fwdrl';
+  src:
+    url('fonts/fwdrl.ttf?u6a1pg') format('truetype'),
+    url('fonts/fwdrl.woff?u6a1pg') format('woff'),
+    url('fonts/fwdrl.svg?u6a1pg#fwdrl') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.fwdrl-icon,
+[class^="fwdrl-icon-"]:before,
+[class*=" fwdrl-icon-"]:before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'fwdrl' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fwdrl-icon-10:before {
+  content: "\e900";
+}
+
+.fwdrl-icon-blogger:before {
+  content: "\e901";
+}
+
+.fwdrl-icon-buffer:before {
+  content: "\e902";
+}
+
+.fwdrl-icon-cast:before {
+  content: "\e903";
+}
+
+.fwdrl-icon-CC:before {
+  content: "\e904";
+}
+
+.fwdrl-icon-CC-off:before {
+  content: "\e905";
+}
+
+.fwdrl-icon-close:before {
+  content: "\e906";
+}
+.fwdrl-icon-facebook:before {
+  content: "\e907";
+}
+
+.fwdrl-icon-fullscreen:before {
+  content: "\e908";
+}
+
+.fwdrl-icon-linkedin:before {
+  content: "\e909";
+}
+
+.fwdrl-icon-next:before {
+  content: "\e90a";
+}
+
+.fwdrl-icon-normalscreen:before {
+  content: "\e90b";
+}
+
+.fwdrl-icon-pause:before {
+  content: "\e90c";
+}
+
+.fwdrl-icon-pinterest:before {
+  content: "\e90d";
+}
+.fwdrl-icon-play:before {
+  content: "\e90e";
+}
+
+.fwdrl-icon-prev:before {
+  content: "\e90f";
+}
+
+.fwdrl-icon-reddit:before {
+  content: "\e910";
+}
+
+.fwdrl-icon-settings:before {
+  content: "\e911";
+}
+
+.fwdrl-icon-share:before {
+  content: "\e912";
+}
+
+.fwdrl-icon-sound:before {
+  content: "\e913";
+}
+
+.fwdrl-icon-sound-off:before {
+  content: "\e914";
+}
+
+.fwdrl-icon-digg:before {
+  content: "\e915";
+}
+
+.fwdrl-icon-tumblr:before {
+  content: "\e916";
+}
+
+.fwdrl-icon-twitter:before {
+  content: "\e917";
+}
+
+.fwdrl-icon-uncast:before {
+  content: "\e918";
+}
+
+.fwdrl-icon-watch-later:before {
+  content: "\e919";
+}
+
+.fwdrl-icon-zoomin:before {
+  content: "\e91a";
+}
+
+.fwdrl-icon-zoomout:before {
+  content: "\e91b";
+}
