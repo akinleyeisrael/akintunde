@@ -3,25 +3,18 @@
 
 {% block content %}
   
-<div class="col col-md-5 container">
-  {% if form.instance.id %}
-  <h2>Edit About Page</h2>
-  {% else %}
-  <h2>Create About Page</h2>
-  {% endif %}
-  <form action="" method="POST" enctype="multipart/form">
+<div class="room__message">
+  <form action="" method="POST">
     {% csrf_token %} 
-  
-    {{form.media}}
+    {% for field in form %}
+    <!-- <p><label for="{{field.label}}">Create About</label></p>
+
+    <textarea id="about" name="about" rows="4" cols="50">{{field.biography}}</textarea> -->
     {{form.as_p}}
-    <button type="submit" class="btn btn-success"  ><i class="fa-solid fa-circle-plus fa-beat"></i>   Create</button>
-    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">
-      <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
-  
+    {% endfor %}
+
+    <input type="submit" value="submit" />
   </form>
 </div>
-
-
-
 {% endblock content %}
   
