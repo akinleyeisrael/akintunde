@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .container{
+        border-style: groove;
+        margin: 5rem 20rem 20rem 20rem;
+        padding: 0px 20px 20px 20px;
+    }
+    a{
+        float: right;
+        margin: 2px 2px 2px 2px;
+    }
+    .box{
+        width: 60px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid;
+        }
+    .container-category{ 
+            margin: -36.0rem 102rem 10rem 1rem;
+            border: groove;
+            
+        }
+
+    .container-category a{
+          float: left;
+          margin-left: 70px
+    }
+    .container-category p{
+            margin-bottom: 70px;
+    }
+</style>
+
+
+
+    <h1>GALLERY</h1>
+
+    <div class="container">
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'create-gallery' %}">create</a>
+        {% endif %}
+
+        
+        {% for gal in gallery %}
+            <br>
+            <a href="{% url 'gallery-extended' gal.id %}?q={{gal.title}}" >
+                {% if gal.image %} 
+                <img class="img-responsive" src="{{gal.image.url}}" />
+                {% endif %} 
+            </a>
+            {{gal.image_caption}}  
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'edit-gallery' gal.id %}" >Edit</a>   
+                <a href="{% url 'delete-gallery' gal.id %}" >Delete</a>
+                {% endif %}
+            {% empty %}
+            <h1 class="text-center alert alert-info">No Gallery available</h1>
+        {% endfor %}
+
+
+        
+            
+    </div>
+    <div class="container">
+        <h2>category</h2>
+        {% if request.user.is_authenticated %}
+        <><a href="{% url 'create-category' %}">create</a><p>
+        {% endif %}
+       
+       
+        <a class="float-right" href="{% url 'gallery' %}">
+        <div class="box"class="float-right"> All</div>
+        </a>
+        {% for category in categories %}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'edit-category' category.id %}">Edit</a>
+        <a href="{% url 'delete-category' category.id %}">Delete</a>
+        {% endif %}
+
+        <a href="{% url 'gallery' %}?q={{category.title}}">
+        <div class="box"> {{category.title}}</div>
+        </a>
+       
+        {% endfor %}
+
+    </div>
+  
+   
+
+{% endblock content %}
+    

@@ -1,23 +1,18 @@
-{% load static %}
-  <link href="{% static 'font-awesome/css/fontawesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'font-awesome/css/brands.min.css' %}" rel="stylesheet">
-    <link href="{% static 'font-awesome/css/solid.min.css' %}" rel="stylesheet">
-    <link href="{% static 'font-awesome/css/.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}", rel="stylesheet" type='text/css' media='screen' />
 
+{% load static %}
     
 <div class="message-container">
 {% if messages %}
     {% for message in messages %}
     {% if 'danger' in message.tags %}
       <div class="alert {{ message.tags }}" id="msg" role="alert">
-        <i class="fa-solid fa-exclamation fa-beat-fade fa-sm"></i><span class="space"></span>
         {{ message }}
+        <span class="space"></span><i class="fa-solid fa-exclamation"></i>
       </div>
       {% elif 'success' in message.tags %}
       <div class="alert {{ message.tags }}" id="msg" role="alert"><span class="space"></span>
-        <i class="fa-solid fa-check fa-sm"></i>
         {{ message }}
+        <i class="fa-solid fa-check"></i>
       </div>
       {% endif %}
     {% endfor %}

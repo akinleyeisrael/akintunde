@@ -17,7 +17,6 @@ from .forms import (
 )
 from django.core.paginator import Paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.template import RequestContext
 
 
 # Create your views here.
@@ -64,7 +63,8 @@ def home(request):
 
 def about(request):
     about = About.objects.all()
-    context = {"about": about}
+    has_submissions = About.objects.exists()
+    context = {"about": about, "has_submissions": has_submissions}
     return render(request, "akintunde/about.html", context)
 
 
@@ -210,7 +210,7 @@ def deleteCategory(request, pk):
 
 def blog(request):
     blogs = Blog.objects.all().order_by('-created')
-    item_per_page = 2
+    item_per_page = 6
     paginator = Paginator(blogs, item_per_page)
     page_number = request.GET.get('page', 1)  #get_current page num
     
@@ -348,3 +348,7 @@ def deleteVideo(request, pk):
 
     context = {"video": video}
     return render(request, "akintunde/video/delete_video.html", context)
+
+
+
+

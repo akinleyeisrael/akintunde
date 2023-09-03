@@ -4,7 +4,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.core.validators import EmailValidator
-
+from embed_video.fields import EmbedVideoField
 
 #home page is static
 
@@ -57,6 +57,7 @@ class Contact(models.Model):
     email = models.EmailField(null=False, blank=False, validators=[EmailValidator(message='Please enter a valid email address.')])
     subject = models.CharField(max_length=500, null=False, blank=False)
     message = models.TextField(null=False, blank=False)
+    updated = models.DateTimeField(auto_now=True)
 
         
     def __str__(self):
@@ -66,6 +67,7 @@ class Contact(models.Model):
     
     
 class Video(models.Model):
+    videourl = EmbedVideoField(blank=False, null=True, default="")
     title = models.CharField(max_length=100)
     description = RichTextField(null=True,blank=True)
     video_file = models.FileField(upload_to='videos/')
@@ -83,4 +85,5 @@ class Video(models.Model):
 
 #     def __str__(self):
 #         return self.title
+
 

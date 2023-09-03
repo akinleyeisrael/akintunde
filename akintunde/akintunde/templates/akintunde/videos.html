@@ -1,37 +1,51 @@
+
 {% extends 'main.html' %}
+{% load static %}
+{% load embed_video_tags %}
 {% block content %}
 
-<div class="container">
-    <h1>Video Library</h1>
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'video-upload' %}">Upload Video</a>
-    {% endif %}
-    <ul id="video-table">
-      {% for video in videos %}
-      {% if request.user.is_authenticated %}
-      <a href="{% url 'edit-video' video.id %}" >Edit</a>
-      <a href="{% url 'delete-video' video.id %}"  class="btn btn-warning btn-sm js-delete-video">Delete</a>
-      {% endif %}
-      <div class="row">
-          <div class="col-sm">
-              <li>
-                <h2>{{ video.title }}</h2>
-                {% if video.video_file %}
-                <video controls  width="320" height="240">
-                  <source src="{{ video.video_file.url }}" type="">
-                  Your browser does not support the video tag.
-                </video>
-                {% endif %}   
-                <p>{{ video.description|safe }}</p>
-                <p><span>Published: </span>{{video.upload_date|date}} </p>
-              </li>
-            <div>
-              {% empty%}
-              <p class="text-center bg-warning">No video available</p>
-      </div>
-      {% endfor %}
-    </ul>
-</div>
-{% endblock %}
 
 
+<header class="xl v-center bg-img jarallax" data-jarallax data-speed="0.8" style="background-image: url({% static 'images/pix50.jpg' %});">
+    <div class="container text-center">
+        <h1 class="page-title text-white mb-0" Style="font-family: 'Dancing Script', cursive;">videos</h1>
+    </div><!-- / container -->
+</header>
+
+
+<section class="section-video" style="margin-top: 70px;">
+    <div class="container">
+        
+                {% if request.user.is_authenticated %}
+                    <a class="btn btn-success mb-2" href="{% url 'video-upload' %}">Add Video</a>
+                {% endif %}
+     
+        <div class="row">   
+                {% for video in videos %} 
+                    <div class="col-md-6 web-design">
+                            <figure class="portfolio-item">
+                                <div class="hovereffect">
+                                    <div class="plyr__video-embed" id="player">
+                                     
+                                        {% video video.videourl 'small' %}"
+                                      
+                                    </div>
+                                </div><!-- / hovereffect -->
+                            </figure><!-- / portfolio-item -->
+                            <i class="align-center" style="font-family: 'Dancing Script', cursive;">{{ video.title }}</i>
+                                <p>{{video.upload_date|date}} </p>
+                                    {% if request.user.is_authenticated %}
+                                        <a href="{% url 'edit-video' video.id %}" class="btn btn-info btn-sm"  ><i class="fa-regular fa-pen-to-square"></i></i></a>
+                                        <a href="{% url 'delete-video' video.id %}"  class="btn btn-danger btn-sm js-delete-video"><i class="fa-solid fa-trash"></i></a>
+                                    {% endif %}
+                                </div><!-- / column -->
+                                {% empty%}
+                                    <h1 class="text-center alert alert-warning mt-2">No videos available</h1>
+                {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% include 'footer.html' %}
+{% endblock content %}

@@ -152,6 +152,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -226,6 +242,23 @@
         "description": "django.core.validators",
         "isExtraImport": true,
         "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "embed_video.fields",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "embed_video.fields",
+        "description": "embed_video.fields",
+        "detail": "embed_video.fields",
+        "documentation": {}
+    },
+    {
+        "label": "EmbedVideoField",
+        "importPath": "embed_video.fields",
+        "description": "embed_video.fields",
+        "isExtraImport": true,
+        "detail": "embed_video.fields",
         "documentation": {}
     },
     {
@@ -421,14 +454,6 @@
         "documentation": {}
     },
     {
-        "label": "RequestContext",
-        "importPath": "django.template",
-        "description": "django.template",
-        "isExtraImport": true,
-        "detail": "django.template",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -577,6 +602,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "akintunde.akintunde.migrations.0011_contact_updated_video_videourl",
+        "description": "akintunde.akintunde.migrations.0011_contact_updated_video_videourl",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('akintunde', '0010_alter_blog_description_alter_contact_email_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='contact',\n            name='updated',\n            field=models.DateTimeField(auto_now=True),\n        ),",
+        "detail": "akintunde.akintunde.migrations.0011_contact_updated_video_videourl",
+        "documentation": {}
+    },
+    {
         "label": "AkintundeConfig",
         "kind": 6,
         "importPath": "akintunde.akintunde.apps",
@@ -599,7 +633,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.forms",
         "description": "akintunde.akintunde.forms",
-        "peekOfCode": "class GalleryForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = \"__all__\"\n        widgets = {\n            'title': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your title'}),\n            'image': forms.FileInput(attrs={'class':'form-control'}),\n            'image_caption': forms.TextInput(attrs={'class':'form-control'}),\n            'category': forms.Select(attrs={'class':'form-control'}),\n            'image_description': forms.Textarea(attrs={'class':'form-control'}),",
+        "peekOfCode": "class GalleryForm(forms.ModelForm):\n    class Meta:\n        model = Gallery\n        fields = \"__all__\"\n        widgets = {\n            'title': forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your title'}),\n            'image': forms.FileInput(attrs={'class':'form-control', 'placeholder' : 'Image'}),\n            'image_caption': forms.TextInput(attrs={'class':'form-control', 'placeholder' : 'Image Caption'}),\n            'category': forms.Select(attrs={'class':'form-control', 'placeholder' : 'Category'}),\n            'image_description': forms.Textarea(attrs={'class':'form-control', 'placeholder' : 'Description'}),",
         "detail": "akintunde.akintunde.forms",
         "documentation": {}
     },
@@ -635,7 +669,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.forms",
         "description": "akintunde.akintunde.forms",
-        "peekOfCode": "class ContactForm(forms.ModelForm):\n    class Meta:\n        model = Contact\n        fields = \"__all__\"\nclass VideoForm(forms.ModelForm):\n    class Meta:\n        model = Video\n        fields = \"__all__\"\n        exclude = [\"description\"]\n        widgets = {",
+        "peekOfCode": "class ContactForm(forms.ModelForm):\n    class Meta:\n        model = Contact\n        fields = \"__all__\"\nclass VideoForm(forms.ModelForm):\n    class Meta:\n        model = Video\n        fields = \"__all__\"\n        exclude = [\"description\", \"video_file\"]\n        widgets = {",
         "detail": "akintunde.akintunde.forms",
         "documentation": {}
     },
@@ -644,7 +678,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.forms",
         "description": "akintunde.akintunde.forms",
-        "peekOfCode": "class VideoForm(forms.ModelForm):\n    class Meta:\n        model = Video\n        fields = \"__all__\"\n        exclude = [\"description\"]\n        widgets = {\n            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder' : 'Title- tell about your video'}),\n            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder' : 'Description'}),\n            'video_file': forms.FileInput(attrs={'class':'form-control', 'placeholder' : 'Video File'})\n        }",
+        "peekOfCode": "class VideoForm(forms.ModelForm):\n    class Meta:\n        model = Video\n        fields = \"__all__\"\n        exclude = [\"description\", \"video_file\"]\n        widgets = {\n            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder' : 'Title- tell about your video'}),\n            'videourl': forms.TextInput(attrs={'class':'form-control', 'placeholder' : 'Enter youtube URL(link)'}),\n            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder' : 'Description'}),\n            'video_file': forms.FileInput(attrs={'class':'form-control', 'placeholder' : 'Video File'})",
         "detail": "akintunde.akintunde.forms",
         "documentation": {}
     },
@@ -689,7 +723,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class Contact(models.Model):\n    name = models.CharField(max_length=50)\n    email = models.EmailField(null=False, blank=False, validators=[EmailValidator(message='Please enter a valid email address.')])\n    subject = models.CharField(max_length=500, null=False, blank=False)\n    message = models.TextField(null=False, blank=False)\n    def __str__(self):\n        return self.subject\nclass Video(models.Model):\n    title = models.CharField(max_length=100)\n    description = RichTextField(null=True,blank=True)",
+        "peekOfCode": "class Contact(models.Model):\n    name = models.CharField(max_length=50)\n    email = models.EmailField(null=False, blank=False, validators=[EmailValidator(message='Please enter a valid email address.')])\n    subject = models.CharField(max_length=500, null=False, blank=False)\n    message = models.TextField(null=False, blank=False)\n    updated = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.subject\nclass Video(models.Model):\n    videourl = EmbedVideoField(blank=False, null=True, default=\"\")",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -698,7 +732,7 @@
         "kind": 6,
         "importPath": "akintunde.akintunde.models",
         "description": "akintunde.akintunde.models",
-        "peekOfCode": "class Video(models.Model):\n    title = models.CharField(max_length=100)\n    description = RichTextField(null=True,blank=True)\n    video_file = models.FileField(upload_to='videos/')\n    upload_date = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return self.title\n#foreign\n# class Image(models.Model):  \n#     image_file = models.ImageField(upload_to='static/img')",
+        "peekOfCode": "class Video(models.Model):\n    videourl = EmbedVideoField(blank=False, null=True, default=\"\")\n    title = models.CharField(max_length=100)\n    description = RichTextField(null=True,blank=True)\n    video_file = models.FileField(upload_to='videos/')\n    upload_date = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return self.title\n#foreign\n# class Image(models.Model):  ",
         "detail": "akintunde.akintunde.models",
         "documentation": {}
     },
@@ -734,7 +768,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def logoutUser(request):\n    logout(request)\n    messages.success(request, \"User logged out\")\n    return redirect(\"login\")\ndef home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)",
+        "peekOfCode": "def logoutUser(request):\n    logout(request)\n    messages.success(request, \"User logged out\")\n    return redirect(\"login\")\ndef home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    has_submissions = About.objects.exists()\n    context = {\"about\": about, \"has_submissions\": has_submissions}",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -743,7 +777,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):\n    form = AboutForm()",
+        "peekOfCode": "def home(request):\n    return render(request, \"akintunde/home.html\")\ndef about(request):\n    about = About.objects.all()\n    has_submissions = About.objects.exists()\n    context = {\"about\": about, \"has_submissions\": has_submissions}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -752,7 +786,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def about(request):\n    about = About.objects.all()\n    context = {\"about\": about}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):\n    form = AboutForm()\n    if request.method == \"POST\":\n        form = AboutForm(request.POST)",
+        "peekOfCode": "def about(request):\n    about = About.objects.all()\n    has_submissions = About.objects.exists()\n    context = {\"about\": about, \"has_submissions\": has_submissions}\n    return render(request, \"akintunde/about.html\", context)\n# CRUD : ABOUT\n@login_required(login_url=\"login\")\ndef createAbout(request):\n    form = AboutForm()\n    if request.method == \"POST\":",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -851,7 +885,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def deleteCategory(request, pk):\n    categories = Category.objects.get(id=pk)\n    if request.method == \"POST\":\n        categories.delete()\n        return redirect(\"gallery\")\n    return render(request, \"akintunde/category/delete_form.html\", {\"obj\": categories})\ndef blog(request):\n    blogs = Blog.objects.all().order_by('-created')\n    item_per_page = 2\n    paginator = Paginator(blogs, item_per_page)",
+        "peekOfCode": "def deleteCategory(request, pk):\n    categories = Category.objects.get(id=pk)\n    if request.method == \"POST\":\n        categories.delete()\n        return redirect(\"gallery\")\n    return render(request, \"akintunde/category/delete_form.html\", {\"obj\": categories})\ndef blog(request):\n    blogs = Blog.objects.all().order_by('-created')\n    item_per_page = 6\n    paginator = Paginator(blogs, item_per_page)",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -860,7 +894,7 @@
         "kind": 2,
         "importPath": "akintunde.akintunde.views",
         "description": "akintunde.akintunde.views",
-        "peekOfCode": "def blog(request):\n    blogs = Blog.objects.all().order_by('-created')\n    item_per_page = 2\n    paginator = Paginator(blogs, item_per_page)\n    page_number = request.GET.get('page', 1)  #get_current page num\n    try:\n        page = paginator.page(page_number)\n    except PageNotAnInteger:\n        page = paginator.page(1)\n    except EmptyPage:",
+        "peekOfCode": "def blog(request):\n    blogs = Blog.objects.all().order_by('-created')\n    item_per_page = 6\n    paginator = Paginator(blogs, item_per_page)\n    page_number = request.GET.get('page', 1)  #get_current page num\n    try:\n        page = paginator.page(page_number)\n    except PageNotAnInteger:\n        page = paginator.page(1)\n    except EmptyPage:",
         "detail": "akintunde.akintunde.views",
         "documentation": {}
     },
@@ -995,7 +1029,7 @@
         "kind": 5,
         "importPath": "akintunde.mywebsite.settings",
         "description": "akintunde.mywebsite.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'akintunde.apps.AkintundeConfig',   #registered the app\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'ckeditor'\n]",
+        "peekOfCode": "INSTALLED_APPS = [\n    'akintunde.apps.AkintundeConfig',   #registered the app\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'ckeditor',\n    'embed_video',",
         "detail": "akintunde.mywebsite.settings",
         "documentation": {}
     },

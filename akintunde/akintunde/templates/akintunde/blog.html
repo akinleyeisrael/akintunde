@@ -1,95 +1,111 @@
+
 {% extends 'main.html' %}
+{% load static %}
 {% block content %}
-<style type="text/css">
-    a:link {
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    h2 {
-        text-align: center;
-    }
+
+<header class="xl v-center bg-img jarallax" data-jarallax data-speed="0.8" style="background-image: url({% static 'images/pix50.jpg' %});">
+    <div class="container text-center">
+        <h1 class="page-title text-white mb-0" style="font-family: 'dancing script', cursive">BLOG</h1>
+    </div><!-- / container -->
+</header>
+
+<div class="main-container p-0">
+
+    <section id="blog" class="lg">
+        <div class="container">
+            {% if request.user.is_authenticated %}
+                <a class="btn btn-success mb-2" href= "{% url 'create-blog' %}">Add blog</a>
+            {% endif %} 
+            <div class="row">
+                <div class="col-lg-8 tablet-lg-top-45 page-content">
+                    <div class="row">
+                        {% for blog in blogs %}  
+                            <div class="col-md-6 mb-30">
+                                <div class="hover-card">
+                                    <div class="card mb-0">
+                                        {% if blog.image %}
+                                        <img class="card-img-top" src="{{blog.image.url}}" alt="">
+                                        {% endif %}
+                                        <div class="card-body text-left">
+                                            <h4 class="card-title fs-24 mb-10">{{blog.title}}</h4>
+                                            <p class="post-meta text-xs mb-10">
+                                                <i class="fas fa-tag fs-12 va-middle mr-5"></i>
+                                                <span class="va-middle mr-15">{{blog.category.title}}</span>
+                                                <i class="fas fa-calendar fs-12 va-middle mr-5"></i>
+                                                <span class="va-middle">{{blog.created|date}}</span>
+                                                <i class="fas fa-at fs-12 va-middle ml-5"></i>
+                                                <span class="va-middle">Akintunde</span>
+                                            </p><!-- / post-meta -->
+                                            <p class="fs-14 mb-20">{{blog.description|truncatewords_html:24|safe}}</p>
+                                            <a href="{% url 'blog-extended' blog.id %}" class="btn btn-sm btn-primary">Read More</a>
+                                        </div><!-- / card-body -->
+                                    </div><!-- / card -->
+                                </div><!-- / hover-card -->
+                                {% if request.user.is_authenticated %}
+                                        <a class="btn btn-info btn-sm mt-2" href= "{% url 'edit-blog' blog.id %}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a class="btn btn-danger btn-sm mt-2" href= "{% url 'delete-blog' blog.id %}"><i class="fa-solid fa-trash"></i></a>
+                                {% endif %}
+                            </div><!-- / column -->
+                        {% endfor %}
+                        </div> <!--row-->
+
+                    <!--PAGINATION-->
+                    <nav aria-label="pagination-center">
+                        {% if blogs.has_other_pages %}
+                            <ul class="pagination justify-content-center mt-45 mb-0">
+                                {% if blogs.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ blogs.previous_page_number }}"><i class="fas fa-chevron-left mb-5"></i></a></li>
+                                {% else %}
+                                    <li class="page-item disabled"><a class="page-link" href="#x"><i class="fas fa-chevron-left mb-5"></i></a></li>
+                                {% endif %}
+
+                                {% for i in blogs.paginator.page_range %}
+                                    {% if blogs.number == i %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{i}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if blogs.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{i}}"><i class="fas fa-chevron-right mb-5"></i></a></li>
+                                {% else %}
+                                    <li class="page-item disabled"><a class="page-link" href="#x"><i class="fas fa-chevron-right mb-5"></i></a></li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </nav><!-- / pagination-center -->
+                </div><!-- / page-content -->
+
+                <div class="col-lg-4 sidebar">      
+                    <div class="widget">
+                        <h6 class="widget-title">Tags</h6>
+                        <div class="tag-cloud">
+                            <a href="#x" class="btn btn-xs btn-primary m-5 rounded">#politics</a>
+                            <a href="#x" class="btn btn-xs btn-primary m-5 rounded">#education</a>
+                            <a href="#x" class="btn btn-xs btn-primary m-5 rounded">#camera</a>
+                            <a href="#x" class="btn btn-xs btn-primary m-5 rounded">#illustrations</a>
+                            <a href="#x" class="btn btn-xs btn-primary m-5 rounded">#photography</a>
+                        </div><!-- / tag-cloud -->
+                    </div><!-- / widget -->
+                    <div class="widget text-center ">   
+                            <a href="https://www.instagram.com/a.k.i.n.t.u.n.d.e/?hl=en"><i class="fa-brands fa-instagram fa-xl"></i></a>
+                            <a href="akintundeakinleye.com"><i class="fa-solid fa-globe fa-xl"></i></a>
+                            <a href="https://www.facebook.com/akintunde.akinleye.9"><i class="fa-brands fa-facebook fa-xl"></i></a>      
+                            <a href="https://ca.linkedin.com/in/akintunde-akinleye-361ba342"><i class="fa-brands fa-linkedin fa-xl"></i></a> 
     
-</style>
-
-
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <h2> BLOG </h2>
-
-                {% if request.user.is_authenticated %}
-                <a href= "{% url 'create-blog' %}">Create</a>
-                {% endif %}
-                  
+                    </div><!-- / widget -->
+                </div><!-- / sidebar -->
             </div>
-
-            {% for blog in blogs %}           
-            <div class="col-md">
-               Author: Akintunde
-                {{blog.created|date}}
-                {{blog.category.title}}
-                
-                <a href="{% url 'blog-extended' blog.id %}">
-                    {{blog.title}}
-                    
-                    {% if blog.image %}
-                    <img src="{{blog.image.url}}" width='200' height= '200'>
-                    {% endif %}
-                </a>
-                {% comment %} {{blog.image_caption}}    {% endcomment %}
-                {{blog.description|truncatewords_html:50|safe}}
-                <a href="{% url 'blog-extended' blog.id %}">Read More</a>
-            </div>
-            <div class="col-md">
-
-              {% if request.user.is_authenticated %}
-              <a href= "{% url 'edit-blog' blog.id %}">Edit</a>
-              <a href= "{% url 'delete-blog' blog.id %}">Delete</a>
-              {% endif %}
-
-            </div>
-            {% endfor %}
-            
-        </div>
-        
-        
-
-        <nav aria-label="Page navigation example">
-            {% if blogs.has_other_pages %}
-                <ul class="pagination">
-                {% if blogs.has_previous %}
-                    <li><a href="?page={{ blogs.previous_page_number }}">&laquo; first</a></li>
-                {% else %}
-                    <li class="disabled"><span>&laquo;</span></li>
-                {% endif %}
-                
-                {% for i in blogs.paginator.page_range %}
-                    {% if blogs.number == i %}
-                    <li class="active"><a href="?page={{i}}">{{ i }} <span class="sr-only">(current)</span></a></li>
-                  
-                    {% else %}
-                    <li><a href="?page={{ i }}">{{ i }}</a></li>
-                    {% endif %}
-                  
-                {% endfor %}
-                {% if blogs.has_next %}
-                    <li><a href="?page={{ blogs.next_page_number }}">&raquo; next</a></li>
-                {% else %}
-                    <li class="disabled"><span>&raquo;</span></li>
-                {% endif %}
-                </ul>
-        {% endif %}
-    </nav>
-
-    </div>
-</div>
+        </div><!-- / container -->
+    </section><!-- / blog -->
+</div><!-- main-container -->
 
 
 
 
 
+{% include 'footer.html' %}
+{% endblock content %}
 
-{% endblock %}
+
