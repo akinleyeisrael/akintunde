@@ -2,91 +2,103 @@
 
 {% block content %}
 
-<div class="section-gallery-header">
+    <div class="section-gallery-header">
 
-    <header class="xl v-center bg-img jarallax h-75 header-gallery" data-jarallax data-speed="0.8" style="background-image: url(static/images/gallery-background.png); background-size: cover; background: filter: brightness(60%);">
-        <div class="container text-center">
-            <h1 class="page-title text-white mb-0" style="color: #456433; font-family: 'Dancing Script', cursive;">gallery</h1>
-        </div><!-- / container -->
-    </header>
-</div>
+        <header class="xl v-center bg-img jarallax h-75 header-gallery" data-jarallax data-speed="0.8"
+                style="background-image: url(static/images/gallery-background.png); background-size: cover; background: filter: brightness(60%);">
+            <div class="container text-center">
+                <h1 class="page-title text-white mb-0" style="color: #456433; font-family: 'Dancing Script', cursive;">
+                    gallery</h1>
+            </div><!-- / container -->
+        </header>
+    </div>
 
-{% comment %} 
+    {% comment %}
     <section id="portfolio" class="pt-0 pb-40 mt-5" style=""> {% endcomment %}
     <div class="main-container p-0 category-nav">
         <div class="section-gallery-cat">
             {% if request.user.is_authenticated %}
-            <div class="text-center">
-                <a class="btn btn-success" href="{% url 'create-category' %}">Add categories</a><p>
-            </div>
+                <div class="text-center">
+                    <a class="btn btn-success" href="{% url 'create-category' %}">Add categories</a>
+                    <p>
+                </div>
             {% endif %}
             <div class="container p-0" id="portfolio">
                 <div class="button-group filters-button-group text-center">
-                    <a href="{% url 'gallery' %}"><button class="btn filter-btn is-checked" data-filter="*">All</button></a>
+                    <a href="{% url 'gallery' %}">
+                        <button class="btn filter-btn is-checked btn-outline-white" data-filter="*">All</button>
+                    </a>
                     {% for category in categories %}
-                        <a href="{% url 'gallery' %}?q={{category.title}}"><button class="btn filter-btn" data-filter="">{{category.title}}</button></a>
+                        <a href="{% url 'gallery' %}?q={{ category.title }}">
+                            <button class="btn filter-btn" data-filter="">{{ category.title }}</button>
+                        </a>
                         {% if request.user.is_authenticated %}
-                            <a class="btn btn-info btn-sm" href="{% url 'edit-category' category.id %}"><i class="fa-solid fa-pen-to-square fa-2xs"></i></a>
-                            <a class="btn btn-danger btn-sm" href="{% url 'delete-category' category.id %}"><i class="fa-solid fa-trash fa-2xs"></i></a>
-                        {% endif %}  
-                   {% endfor %}
+                            <a class="btn btn-info btn-sm" href="{% url 'edit-category' category.id %}"><i
+                                    class="fa-solid fa-pen-to-square fa-2xs"></i></a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'delete-category' category.id %}"><i
+                                    class="fa-solid fa-trash fa-2xs"></i></a>
+                        {% endif %}
+                    {% endfor %}
                 </div><!-- /  filters-button-group -->
             </div><!-- / container -->
         </div>
     </div>
     {% comment %} </section> {% endcomment %}
 
-    
-{% comment %} <section id="portfolio" class="portfolio-6col"> {% endcomment %}
-    <div class="main-container p-0" style="background: white;">
+
+    {% comment %} <section id="portfolio" class="portfolio-6col"> {% endcomment %}
+    <div class="main-container p-0" style="background: #1a1a1a;">
         <section id="portfolio" class="portfolio-6col">
             <div class="container-fluid">
-                    {% if request.user.is_authenticated %}
-                        <a class="btn btn-success" href="{% url 'create-gallery' %}">Add Gallery</a>
-                    {% endif %}
-                    <div class="row">
-                        {% for gal in gallery %}
-                            <div class="col-md-6 col-lg-4 col-xl-2 web-design">
-                                {% if gal.image %}
-                                <a class="gallery-glightbox" href="{{gal.image.url}}"  data-title="{{gal.title}}"
-                                data-description="{{gal.image_description}}"
-                                data-desc-position="right"
-                                data-type="image"                   
-                                data-height="auto"
-                                data-zoomable="true"
-                                data-draggable="true" >
+                {% if request.user.is_authenticated %}
+                    <a class="btn btn-success" href="{% url 'create-gallery' %}">Add Gallery</a>
+                {% endif %}
+                <div class="row">
+                    {% for gal in gallery %}
+                        <div class="col-md-6 col-lg-4 col-xl-2 web-design">
+                            {% if gal.image %}
+                                <a class="gallery-glightbox" href="{{ gal.image.url }}" data-title="{{ gal.title }}"
+                                   data-description="{{ gal.image_description }}"
+                                   data-desc-position="right"
+                                   data-type="image"
+                                   data-height="auto"
+                                   data-zoomable="true"
+                                   data-draggable="true">
                                     <figure class="portfolio-item">
                                         <div class="hovereffect">
-                                            {% if gal.image %} 
-                                                <img class="img-responsive" src="{{gal.image.url}}" alt="img" width="200" height="400";/>
-                                            {% endif %} 
-                                        
+                                            {% if gal.image %}
+                                                <img class="img-responsive" src="{{ gal.image.url }}" alt="img"
+                                                     width="200" height="400" ;/>
+                                            {% endif %}
+
                                             <div class="overlay">
                                                 <div class="hovereffect-title">
                                                     <div class="hover-bottom">
-                                                        <h6 class="project-title">{{gal.image_caption}}  </h6>
-                                                        <p class="project-skill fw-medium">{{gal.category}} </p>
+                                                        <h6 class="project-title">{{ gal.image_caption }}  </h6>
+                                                        <p class="project-skill fw-medium">{{ gal.category }} </p>
                                                     </div><!-- / hover-bottom -->
                                                 </div><!-- / hovereffect-title -->
                                             </div><!-- / overlay -->
                                         </div><!-- / hovereffect -->
                                     </figure><!-- / portfolio-item -->
                                 </a><!-- / project -->
-                                {% endif %}
-                                {% if request.user.is_authenticated %}
-                                    <a class="btn btn-info" href="{% url 'edit-gallery' gal.id %}" ><i class="fa-solid fa-pen-to-square"></i></a>   
-                                    <a class="btn btn-danger" href="{% url 'delete-gallery' gal.id %}" ><i class="fa-solid fa-trash"></i></a>
-                                {% endif %}
-                            </div><!-- / column -->
-                            {% empty %}
-                            <h1 class="text-center alert alert-warning mt-2">No Gallery available</h1>
-                        {% endfor %}    
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                                <a class="btn btn-info" href="{% url 'edit-gallery' gal.id %}"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-danger" href="{% url 'delete-gallery' gal.id %}"><i
+                                        class="fa-solid fa-trash"></i></a>
+                            {% endif %}
+                        </div><!-- / column -->
+                    {% empty %}
+                        <h1 class="text-center alert alert-warning mt-2">No Gallery available</h1>
+                    {% endfor %}
                 </div><!-- / container-fluid -->
-            </section><!-- / portfolio -->
-        </div><!-- main-container -->
+        </section><!-- / portfolio -->
+    </div><!-- main-container -->
     {% comment %} </section> {% endcomment %}
 
-        {% include 'footer.html' %}
+    {% include 'footer.html' %}
 {% endblock content %}
 
 

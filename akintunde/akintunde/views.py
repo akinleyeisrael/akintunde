@@ -1,22 +1,14 @@
-from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import login, logout
-from django.core.mail import send_mail
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from .models import About, Gallery, Category, Blog, Video
+from django.core.mail import send_mail
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
-from .forms import (
-    AboutForm,
-    GalleryForm,
-    CategoryForm,
-    BlogForm,
-    ContactForm,
-    VideoForm,
-)
-from django.core.paginator import Paginator
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import (AboutForm, BlogForm, CategoryForm, ContactForm, GalleryForm, HomeForm, VideoForm)
+from .models import About, Blog, Category, Gallery, Home, Video
 
 
 # Create your views here.
@@ -24,6 +16,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # custom 404 view
 def custom_404(request, exception):
     return render(request, 'akintunde/partial/404.html', status=404)
+
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -58,7 +51,34 @@ def logoutUser(request):
 
 
 def home(request):
-    return render(request, "akintunde/home.html")
+    home = Home.objects.all()
+    has_submission = Home.objects.exists()
+    context = {'home': home, 'has_submission': has_submission}
+    return render(request, "akintunde/home.html", context)
+
+
+@login_required(login_url="login")
+def createHome(request):
+    form = HomeForm()
+    if request.method == "POST":
+        form = HomeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'akintunde/home/create_form.html', context)
+
+
+def editHome(request, pk):
+    home = Home.objects.get(id=pk)
+    form = HomeForm(instance=home)
+    if request.method == 'POST':
+        form = HomeForm(request.POST, request.FILES, instance=home)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'akintunde/home/create_form.html', context)
 
 
 def about(request):
@@ -112,14 +132,15 @@ def deleteAbout(request, pk):
 
 
 def gallery(request):
-    q = request.GET.get('q') if request.GET.get('q') != None else ''  #set q to empty
-    gallery = Gallery.objects.filter(category__title__icontains=q)  #filter by category titile withou a case(upper or lower)
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''  # set q to empty
+    gallery = Gallery.objects.filter(
+        category__title__icontains=q)  # filter by category titile withou a case(upper or lower)
     categories = Category.objects.all()  # allow to use category in gallery
     context = {"gallery": gallery, "categories": categories}
     return render(request, "akintunde/gallery.html", context)
 
 
-def galleryExtended (request,pk):
+def galleryExtended(request, pk):
     gallery = get_object_or_404(Gallery, id=pk)
     categories = Category.objects.all()  # allow to use category in gallery
     context = {"gallery": gallery, "categories": categories}
@@ -212,8 +233,8 @@ def blog(request):
     blogs = Blog.objects.all().order_by('-created')
     item_per_page = 6
     paginator = Paginator(blogs, item_per_page)
-    page_number = request.GET.get('page', 1)  #get_current page num
-    
+    page_number = request.GET.get('page', 1)  # get_current page num
+
     try:
         page = paginator.page(page_number)
     except PageNotAnInteger:
@@ -225,7 +246,7 @@ def blog(request):
 
 
 def blogExtended(request, pk):
-    blog = get_object_or_404(Blog,id=pk) 
+    blog = get_object_or_404(Blog, id=pk)
     context = {"blog": blog}
     return render(request, "akintunde/blog/blog_extended.html", context)
 
@@ -272,7 +293,7 @@ def deleteBlog(request, pk):
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-        
+
         if form.is_valid():
             form.save()
             name = request.POST.get("name")
@@ -288,10 +309,10 @@ def contact(request):
                 ["akinleyeisrael12@gmail.com"],
                 fail_silently=False,
             )
-            messages.success(request,"Thank you for contacting")
+            messages.success(request, "Thank you for contacting")
         else:
-            messages.error(request,"Something went wrong.Try again") 
-           
+            messages.error(request, "Something went wrong.Try again")
+
     return render(request, "akintunde/contact.html", {})
 
 
@@ -348,7 +369,3 @@ def deleteVideo(request, pk):
 
     context = {"video": video}
     return render(request, "akintunde/video/delete_video.html", context)
-
-
-
-

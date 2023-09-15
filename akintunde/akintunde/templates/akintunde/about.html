@@ -2,46 +2,44 @@
 {% load static %}
 {% block content %}
 
-<section class="section-about mt-60" id="s1" style="background: white;">
-    <header>
-        <h1 class="text-center" style="font-family: 'Dancing Script', cursive;">about</h1>
-        
-    </header>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm col-lg-4 offset-sm-1  align-self-start sticky"  id="">
-                <div id="half-about-scroll">
-                    <img src="{% static 'images/akintunde-profile.jpg' %}" alt="akintunde" class="img-fluid">
+    <section class="section-about mt-60" id="s1" style="background-color: #1A1A1A;">
+        <header>
+            <h1 class="text-center" style="font-family: 'Dancing Script', cursive; color: white">about</h1>
+
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm col-lg-4 offset-sm-1  align-self-start sticky" id="">
+                    <div id="half-about-scroll">
+                        <img src="{% static 'images/akintunde-profile.jpg' %}" alt="img"
+                             height="30" width="20" class="img-fluid img-thumbnail">
+                    </div>
                 </div>
-                {% comment %} <div class="about-image-icons">
-                    <a href="https://www.instagram.com/a.k.i.n.t.u.n.d.e/?hl=en"><i class="fa-brands fa-instagram fa-xl"></i></a>
-                    <a href="akintundeakinleye.com"><i class="fa-solid fa-globe fa-xl"></i></a>
-                    <a href="https://www.facebook.com/akintunde.akinleye.9"><i class="fa-brands fa-facebook fa-xl"></i></a> 
-                    <a href="https://ca.linkedin.com/in/akintunde-akinleye-361ba342"><i class="fa-brands fa-linkedin fa-xl"></i></a> 
-                </div> {% endcomment %}
-            </div>
-            <div class="col-sm col-sm-6 offset-sm-0 align-self-start" >
-                {% if request.user.is_authenticated %}
-                    {% if has_submissions %}
-                        <a class="btn btn-success disabled"  href="{% url 'create-about' %}"><i class="fa-solid fa-ban"></i></a>
-                    {% else %}  
-                        <a class="btn btn-success" href="{% url 'create-about' %}"><i class="fa-solid fa-plus"></i></a>
-                    {% endif %}
-                {% endif %}
-                {% for bio in about %}
+                <div class="col-sm col-sm-6 offset-sm-0 align-self-start">
                     {% if request.user.is_authenticated %}
-                        <a class="btn btn-info" href="{% url 'edit-about' bio.id  %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a class="btn btn-danger" href="{% url 'delete-about' bio.id %}"><i class="fa-solid fa-trash"></i></a>
+                        {% if has_submissions %}
+                            <a class="btn btn-success disabled" href="{% url 'create-about' %}"><i
+                                    class="fa-solid fa-ban"></i></a>
+                        {% else %}
+                            <a class="btn btn-success" href="{% url 'create-about' %}"><i class="fa-solid fa-plus"></i></a>
+                        {% endif %}
                     {% endif %}
-                    {{bio.biography|safe}}
-                {% endfor %}
+                    {% for bio in about %}
+                        {% if request.user.is_authenticated %}
+                            <a class="btn btn-info" href="{% url 'edit-about' bio.id %}"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-danger" href="{% url 'delete-about' bio.id %}"><i
+                                    class="fa-solid fa-trash"></i></a>
+                        {% endif %}
+                        <p class="text-light">{{ bio.biography|safe }}</p>
+                    {% endfor %}
+                </div>
             </div>
+
         </div>
-          
-    </div>
-</section>
-{% include 'footer.html' %}
+    </section>
+    {% include 'footer.html' %}
 
 {% endblock content %}
 
