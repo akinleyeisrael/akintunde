@@ -139,6 +139,9 @@ h1 {
     object-fit: cover;
 }
 
+.section-about #half-about-scroll img {
+    position: sticky;
+}
 
 /* footer */
 footer a {
