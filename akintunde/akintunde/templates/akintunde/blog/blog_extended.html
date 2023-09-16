@@ -4,7 +4,7 @@
 {% block content %}
 
 
-    <div class="main-container p-0" style="background: #1a1a1a">
+    <div class="main-container p-0 bg-inverse">
 
         <section id="blog" class="lg">
             <div class="container">
@@ -12,20 +12,22 @@
                     <div class="col-lg-1">
                         <a href="{% url 'blog' %}"><i class="fas fa-arrow-left fa-xl text-white "></i></a>
                     </div>
-                    <div class="col-lg-10 offset-md-0 tablet-lg-top-45 page-content">
+                    <div class="col-lg-10  page-content">
                         <div class="blog-post mb-50">
                             <div class="page-content">
-                                <img src="{{ blog.image.url }}" alt="" class="rounded mb-25 img-fluid height-50"
-                                     style="height: 40rem; width: 65rem; object-fit: contain;">
+                                <img src="{{ blog.image.url }}" alt=""
+                                     class="rounded mb-25 img-fluid height-50 shadow-lg bg-black"
+                                     style="height: 30rem; width: 100%; object-fit: contain;">
                                 <h4 class="fs-24 mb-10 text-white"> {{ blog.title }}</h4>
                                 <p class="post-meta text-xs mb-10 text-white">
                                     <i class="fas fa-tag fs-12 va-middle mr-5"></i>
                                     <span class="va-middle mr-15"> {{ blog.category.title }}</span>
                                     <i class="fas fa-calendar fs-12 va-middle mr-5"></i>
-                                    <span class="va-middle"> {{ blog.created|timesince }}</span>
+                                    <span class="va-middle"
+                                          style="word-break: break-word"> {{ blog.created|date }}</span>
                                 </p><!-- / post-meta -->
 
-                                <p class="mb-0 text-white"> {{ blog.description|safe }}</p>
+                                <span class="mb-0 text-white"> {{ blog.description|safe|escape }}</span>
                                 <div class="text-right">
                                     <a class="btn btn-outline-white" href="{% url 'blog' %}">Back to Blog
                                         List</a>

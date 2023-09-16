@@ -2,17 +2,17 @@
 {% load static %}
 {% block content %}
 
-    <header class="xl v-center bg-img jarallax height-90 dark-effect" data-jarallax data-speed="0.8"
-            style="background-image: url({% static 'images/pix16.jpg' %}); background-size: cover;  background-repeat: no-repeat;">
+    <header class="xl v-center bg-img jarallax height-90 " data-jarallax data-speed="0.8"
+            style="background-image: url({% static 'images/pix16.jpg' %}); background-size: contain;  background-repeat: no-repeat; ">
         <div class="container text-center">
-            <h1 class="page-title text-white mb-0 text-lg-center display-1"
-                style="font-family: " Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif">
-            BLOG</h1>
+            <h1 class="page-title text-white  text-lg-center display-1"
+                style="font-size: 5vw; font-family: " Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial,
+            sans-serif">
+            BLOG
         </div><!-- / container -->
     </header>
 
-    <div class="main-container p-0 bg" style="background: #1a1a1a">
-
+    <div class="main-container p-0 bg-inverse">
         <section id="blog" class="lg">
             <div class="container">
                 {% if request.user.is_authenticated %}
@@ -24,11 +24,12 @@
                             {% for blog in blogs %}
                                 <div class="col-md-6 mb-30">
                                     <div class="hover-card">
-                                        <div class="card mb-0 shadow-xs bg-black-frosted">
+                                        <div class="card mb-0 shadow-xs bg-black-frosted" style="height: 58rem">
                                             {% if blog.image %}
                                                 <img class="card-img-top img-fluid img-responsive "
                                                      src="{{ blog.image.url }}"
-                                                     alt="img" width="200" height="400">
+                                                     alt="img"
+                                                >
                                             {% endif %}
                                             <div class="card-body text-left">
                                                 <h4 class="card-title fs-24 mb-10 text-white text-decoration-underline">{{ blog.title }}</h4>
@@ -40,7 +41,7 @@
                                                     <i class="fas fa-at fs-12 va-middle ml-5 text-light"></i>
                                                     <span class="va-middle text-light">Akintunde</span>
                                                 </p><!-- / post-meta -->
-                                                <p class="fs-14 mb-20 text-white">{{ blog.description|truncatewords_html:24|safe }}</p>
+                                                <p class="fs-14 mb-20 text-white">{{ blog.description|truncatechars_html:120|safe }}</p>
                                                 <a href="{% url 'blog-extended' blog.id %}"
                                                    class="btn btn-sm btn-outline-white"><span
                                                         class="va-middle">Read More</span></a>
@@ -72,8 +73,9 @@
 
                                     {% for i in blogs.paginator.page_range %}
                                         {% if blogs.number == i %}
-                                            <li class="page-item active"><a class="page-link text-white"
-                                                                            href="?page={{ i }}">{{ i }}</a></li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link"
+                                                                                                href="?page={{ i }}">{{ i }}</a>
+                                            </li>
                                         {% else %}
                                             <li class="page-item "><a class="page-link text-white"
                                                                       href="?page={{ i }}">{{ i }}</a>
@@ -95,7 +97,7 @@
                     </div><!-- / page-content -->
 
                     <div class="col-lg-4 sidebar">
-                        <div class="widget bg-body-dark bg-opacity-10">
+                        <div class="widget bg-inverse-transparent">
                             <h6 class="widget-title text-white">Tags</h6>
                             <div class="tag-cloud">
                                 <a href="#x" class="btn btn-xs btn-outline-white m-5 rounded">#politics</a>
@@ -105,14 +107,15 @@
                                 <a href="#x" class="btn btn-xs btn-outline-white rounded">#photography</a>
                             </div><!-- / tag-cloud -->
                         </div><!-- / widget -->
-                        <div class="widget text-center bg-body-dark">
+                        <div class="widget text-center bg-inverse-transparent">
                             <a href="https://www.instagram.com/a.k.i.n.t.u.n.d.e/?hl=en"><i
-                                    class="fa-brands fa-instagram fa-xl text-instagram"></i></a>
-                            <a href="akintundeakinleye.com"><i class="fa-solid fa-globe fa-xl text-white"></i></a>
+                                    class="fa-brands fa-instagram fa-xl text-light-grey white-hover p-10"></i></a>
+                            <a href="akintundeakinleye.com"><i
+                                    class="fa-solid fa-globe fa-xl text-grey p-10 white-hover"></i></a>
                             <a href="https://www.facebook.com/akintunde.akinleye.9"><i
-                                    class="fa-brands fa-facebook fa-xl text-facebook"></i></a>
+                                    class="fa-brands fa-facebook fa-xl text-grey white-hover p-10"></i></a>
                             <a href="https://ca.linkedin.com/in/akintunde-akinleye-361ba342"><i
-                                    class="fa-brands fa-linkedin fa-xl text-linkedin"></i></a>
+                                    class="fa-brands fa-linkedin fa-xl text-grey white-hover p-10"></i></a>
 
                         </div><!-- / widget -->
                     </div><!-- / sidebar -->

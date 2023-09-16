@@ -1,21 +1,23 @@
-
 {% load static %}
-    
-<div class="message-container">
-{% if messages %}
-    {% for message in messages %}
-    {% if 'danger' in message.tags %}
-      <div class="alert {{ message.tags }}" id="msg" role="alert">
-        {{ message }}
-        <span class="space"></span><i class="fa-solid fa-exclamation"></i>
-      </div>
-      {% elif 'success' in message.tags %}
-      <div class="alert {{ message.tags }}" id="msg" role="alert"><span class="space"></span>
-        {{ message }}
-        <i class="fa-solid fa-check"></i>
-      </div>
-      {% endif %}
-    {% endfor %}
-{% endif %}
+
+{% block content %}
+
+    <div class="message-container" style="margin-top: 22px">
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'danger' in message.tags %}
+                    <div class="alert {{ message.tags }}" id="msg" role="alert">
+                        {{ message }}
+                        <span class="space"></span><i class="fa-solid fa-exclamation"></i>
+                    </div>
+                {% elif 'success' in message.tags %}
+                    <div class="alert {{ message.tags }}" id="msg" role="alert"><span class="space"></span>
+                        {{ message }}
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
+{% endblock content %}
 

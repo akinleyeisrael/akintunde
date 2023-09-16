@@ -26,7 +26,6 @@
 
 
 .swiper-slide:hover {
-    filter: brightness(400%);
     filter: brightness(80%);
     /* opacity: 0; */
     transform: scale(1.05, 1.05);
@@ -145,15 +144,19 @@ h1 {
 
 /* footer */
 footer a {
-    padding: 4px;
     color: grey;
-    font-size: 18px;
 }
 
-footer a:hover {
-    color: white;
-    transition: 0.4s;
+footer i {
+    margin-top: 30px;
 }
+
+/*footer a:hover {*/
+/*    color: white;*/
+/*    transition: 0.4s;*/
+/*}*/
+
+/*end footer*/
 
 @media (max-width: 600px) {
     .footer-icons {
@@ -171,9 +174,11 @@ footer a:hover {
     }
 }
 
-half-about-scroll img {
+.section-about .sticky-image {
+    position: -webkit-sticky; /* For Safari */
     position: sticky;
-    top: 0;
+    top: 2px;
+    z-index: 1;
 
 }
 
@@ -199,10 +204,6 @@ half-about-scroll img {
     color: white;
 }
 
-.section-geallery-header header xl {
-    object-fit: cover;
-    filter: brightness(30%);
-}
 
 #portfolio figure img {
     object-fit: cover;

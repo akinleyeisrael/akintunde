@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# enable the admin panel
+ADMIN_ENABLED = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -132,13 +135,14 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'autoParagraph': False,
+        'enterMode': 2,
         'height': 500,
         'width': 1000,
         'autolink': 'true'
     },
 }
 
-DEFAULT_FROM_EMAIL = "AKINTUNDEE <akinleyeisrael12@gmail.com>"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "akinleyeisrael12@gmail.com"

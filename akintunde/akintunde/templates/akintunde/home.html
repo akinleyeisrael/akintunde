@@ -3,10 +3,10 @@
 
 {% block content %}
 
-    <section>
+    <section class="col-xs-2 col-sm-12">
         <!-- Swiper -->
         <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper img-fluid">
                 <div class="swiper-slide">
                     <img src="static/images/pix6.jpg"/>
                 </div>
@@ -58,12 +58,11 @@
 
 
     <!-- start about me -->
-    <section id="about-me" style="background-color: #1A1A1A;">
+    <section id="about-me" class="bg-inverse">
 
         <div class="container">
             <div class="row">
-                {% comment %} <h2>Akintunde akinleye</h2> {% endcomment %}
-                <div class="col-lg-6 about-intro">
+                <div class="col-xs-12  col-sm-12 col-md-6 about-intro">
                     <div class="about-inner">
                         <div class="about-ct">
                             {% for obj in home %}
@@ -74,18 +73,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 about-intro-text">
+                <div class="col-lg-6 about-intro-text mt-3">
                     <div class="container">
-                        <div class="header-content">
-                            <h1 class="mb-10" style="font-family: 'Dancing Script', cursive; color: white;"><b>akintunde
-                                akinleye</b></h1>
-                            <h1 class="mb-10"
-                                style="font-family: 'Dancing Script', cursive; font-size: 30px; color: white; ">
-                                anthropologist|photographer|visual Analyst</h1>
+                        <div class="header-content text-left" style="word-break: break-word">
+                            <h1 class="mb-10 text-white display-5" style="font-family: " Lucida Grande", "Lucida Sans
+                            Unicode",
+                            Verdana, Helvetica, Arial, sans-serif"><b>akintunde
+                            akinleye</b></h1>
+                            <h1 class="mb-10 text-white display-6"
+                                style="font-family: " Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial,
+                            sans-serif; ">
+                            anthropologist|photographer|Visual Analyst</h1>
                             {% for obj in home %}
-                                <p class="text-light header-text fw-regular fs-16 mb-40">{{ obj.description|truncatewords:47|safe }}
+                                <p class="text-white header-text fw-regular fs-16 mb-40"
+                                >{{ obj.description|truncatechars_html:750|safe }}
                                 </p>
-                                <a href="{% url 'about' %}" class="btn btn-sm btn-white"><i class=""></i> <span
+                                <a href="{% url 'about' %}" class="btn btn-sm btn-outline-white"><i class=""></i> <span
                                         class="va-middle">READ MORE</span></a>
                                 {% if request.user.is_authenticated %}
                                     <a class="btn btn-info ml" href="{% url 'edit-home' obj.id %}">Edit</a>

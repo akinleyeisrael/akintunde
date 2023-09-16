@@ -1,49 +1,97 @@
 {% extends 'main.html' %}
+
 {% block content %}
-<!--Section: C<!-- Wrapper container -->
+    <section class="contact">
+        <section id="contact-info" class="lg bg-inverse">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6 col-xl-4 tablet-xl-top-30" data-aos="fade-in" data-aos-delay="200">
+                        <div class="promo-box promo-center">
+                            <div class="promo-big mb-25">
+                                <i class="fas fa-envelope-open promo-icon text-primary fs-36"></i>
+                            </div><!-- / promo-big -->
+                            <h6 class="box-title fw-bold mb-20">SEND EMAIL</h6>
+                            <p class="box-description fw-medium mb-10"><span class="title-color">Email:</span> <a
+                                    href="mailto:akintundeee52@gmail.com" class="text-link">akintundeee52@gmail.com</a>
+                            </p>
+                        </div><!-- / promo-center -->
+                    </div><!-- / column -->
+
+                    <div class="col-12 col-xl-4" data-aos="fade-in" data-aos-delay="300">
+                        <div class="promo-box promo-center">
+                            <div class="promo-big mb-25">
+                                <i class="fas fa-photo-film promo-icon text-primary fs-36 secondary-hover""></i>
+                            </div><!-- / promo-big -->
+                            <h6 class="box-title fw-bold mb-20">SOCIAL MEDIAS</h6>
+                            <a href="https://www.instagram.com/a.k.i.n.t.u.n.d.e/?hl=en"><i
+                                    class="fa-brands fa-instagram fa-xl p-10 text-link"></i></a>
+                            <a href="akintundeakinleye.com"><i
+                                    class="fa-solid fa-globe fa-xl p-10 text-link"></i></a>
+                            <a href="https://www.facebook.com/akintunde.akinleye.9"><i
+                                    class="fa-brands fa-facebook fa-xl p-10 text-link"></i></a>
+                            <a href="https://ca.linkedin.com/in/akintunde-akinleye-361ba342"><i
+                                    class="fa-brands fa-linkedin fa-xl p-10 text-link"></i></a>
+                        </div><!-- / promo-center -->
+                    </div><!-- / column -->
+                </div><!-- / row -->
+            </div><!-- / container -->
+        </section><!-- / contact-info -->
+
+        <div class="col-md-8 offset-md-2 justify-content-md-center" style="margin-top: 5rem;">
+            <h1 class="display-5 text-white text-md-center  justify-content-md-center" style="margin-bottom: 50px;">
+                Leave a
+                reply.</h1>
+            <form class="needs-validation" id="form-validation4">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user text-primary"></i></span>
+                            </div><!--/ input-group-prepend -->
+                            <input type="text" class="form-control w-icon-left" id="contact-name4" name="name"
+                                   placeholder="Full Name" required>
+                        </div><!-- / input-group -->
+                    </div><!-- / column -->
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope text-primary"></i></span>
+                            </div><!--/ input-group-prepend -->
+                            <input type="email" class="form-control w-icon-left" id="contact-email4" name="email"
+                                   placeholder="Email" required>
+                        </div><!-- / input-group -->
+                    </div><!-- / column -->
+
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-info-circle text-primary"></i></span>
+                            </div><!--/ input-group-prepend -->
+                            <input type="text" class="form-control w-icon-left" id="contact-subject4"
+                                   name="subject"
+                                   placeholder="Subject" required>
+                        </div><!-- / form-group -->
+                    </div><!-- / column -->
+
+                </div><!-- / row -->
+                <div class="input-group prepend-w-textarea">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-comment-dots text-primary"></i></span>
+                    </div><!--/ input-group-prepend -->
+                    <textarea id="contact-message4" class="form-control w-icon-left" name="message" rows="5"
+                              placeholder="Message : Add phone or email here (along)" required
+                              style="min-height: 115px; max-height: 150px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-white btn-submit"><i class="fas fa-paper-plane mr-5"></i>
+                    Send
+                    Message
+                </button>
+            </form><!-- / input-group -->
+        </div><!-- / col-md-6 -->
+    </section>
 
 
-<br/>
 
-<div class="container py-4">
- 
-leavw a reply
-    <!-- Bootstrap 5 starter form -->
-    <form method="post" id="contactForm" action="">
-     
-    {% csrf_token %}
-      <!-- Name input -->
-      <div class="mb-3">
-        <label class="form-label" for="name">Name</label>
-        <input class="form-control" id="name" type="text" placeholder="Name" required  name="name" />
-      </div>
-  
-      <!-- Email address input -->
-      <div class="mb-3">
-        <label class="form-label" for="emailAddress">Email Address</label>
-        <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" required name="email" />
-      </div>
-
-        <!-- Name input -->
-        <div class="mb-3">
-            <label class="form-label" for="subject">Subject</label>
-            <input class="form-control" id="subject" type="text" placeholder="Subject" required  name="subject" />
-          </div>
-  
-      <!-- Message input -->
-      <div class="mb-3">
-        <label class="form-label" for="message">Message</label>
-        <textarea class="form-control" id="message" type="text" placeholder="Message : Add phone or email here (optional)" style="height: 10rem;" required name="message"></textarea>
-      </div>
-  
-      <!-- Form submit button -->
-      <div class="d-grid">
-        <button class="btn btn-success btn-lg" type="submit">Submit</button>
-      </div>
-  
-    </form>
-  
-  </div>
-
-<!--Section: Contact v.2-->
-{% endblock content %}
+{% endblock %}
