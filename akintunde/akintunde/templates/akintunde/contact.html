@@ -37,11 +37,13 @@
             </div><!-- / container -->
         </section><!-- / contact-info -->
 
-        <div class="col-md-8 col-lg-8 offset-md-3 justify-content-md-center" style="margin: 12px;">
-            <h1 class="display-5 text-white text-md-center  justify-content-md-center" style="margin: 50px;">
+
+
+    <div class="col-md-8 offset-md-2 justify-content-md-center" style="margin-top: 5rem; padding: 12px;">
+            <h1 class="display-5 text-white text-md-center  justify-content-md-center" style="margin-bottom: 50px; font-family: 'Rochester', cursive">
                 Leave a
                 reply.</h1>
-            <form class="needs-validation" id="form-validation4">
+            <form class="needs-validation" enctype="multipart/form-data" id="form-validation4">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-6">
