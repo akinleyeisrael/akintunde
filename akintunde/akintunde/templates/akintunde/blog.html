@@ -6,9 +6,8 @@
             style="background-image: url({% static 'images/pix16.jpg' %}); background-size: contain;  background-repeat: no-repeat; ">
         <div class="container text-center">
             <h1 class="page-title text-white  text-lg-center display-1"
-                style="font-size: 5vw; font-family: " Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial,
-            sans-serif">
-            BLOG
+                style="font-size: 11vw; font-family: 'Rochester', cursive;">
+                BLOG</h1>
         </div><!-- / container -->
     </header>
 
@@ -24,11 +23,11 @@
                             {% for blog in blogs %}
                                 <div class="col-md-6 mb-30">
                                     <div class="hover-card">
-                                        <div class="card mb-0 shadow-xs bg-black-frosted" style="height: 58rem">
+                                        <div class="card mb-0 shadow-xs bg-black-frosted" style="height: 39rem">
                                             {% if blog.image %}
-                                                <img class="card-img-top img-fluid img-responsive "
+                                                <img class="card-img-top img-fluid img-responsive"
                                                      src="{{ blog.image.url }}"
-                                                     alt="img"
+                                                     alt="img" style="height: 20rem; object-fit: cover;"
                                                 >
                                             {% endif %}
                                             <div class="card-body text-left">
