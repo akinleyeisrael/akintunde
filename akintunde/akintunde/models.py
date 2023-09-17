@@ -82,6 +82,12 @@ class Video(models.Model):
     def __str__(self):
         return self.title
 
+
+class Exhibition(models.Model):
+    image = models.ImageField(upload_to='images/exhibition', blank=True)
+    title = models.CharField(max_length=100)
+    description = RichTextField(null=True, blank=True)
+
 # foreign
 # class Image(models.Model):  
 #     image_file = models.ImageField(upload_to='static/img')
