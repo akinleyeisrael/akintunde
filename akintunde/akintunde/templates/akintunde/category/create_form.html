@@ -3,27 +3,28 @@
 
 {% block content %}
 
-    <div class="col col-md-5 container">
+    <div class="" style="margin-top: 10rem; background: white">
 
-        {% if form.instance.id %}
-            <h2>Edit category</h2>
-        {% else %}
-            <h2>Create category</h2>
-        {% endif %}
+        <div class="col col-md-8 offset-2 justify-content-center">
+            {% if form.instance.id %}
+                <h2>Edit category</h2>
+            {% else %}
+                <h2>Create category</h2>
+            {% endif %}
 
-        <form action="" method="POST" enctype="multipart/form">
-            {% csrf_token %}
+            <form action="" method="POST" enctype="multipart/form">
+                {% csrf_token %}
 
-            {{ form.as_p }}
+                {{ form.as_p }}
 
-            <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus fa-beat"></i> Create
-            </button>
-            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger">
-                <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus fa-beat"></i> Create
+                </button>
+                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger">
+                    <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
 
-        </form>
+            </form>
+        </div>
     </div>
-
 
 {% endblock content %}
   

@@ -137,8 +137,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'autoParagraph': False,
         'enterMode': 2,
-        'height': 500,
-        'width': 1000,
+        'height': 300,
+        'width': 1300,
         'autolink': 'true'
     },
 }

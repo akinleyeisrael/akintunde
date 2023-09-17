@@ -1,18 +1,22 @@
 {% extends 'main.html' %} {% block content %}
 
-<div class="col col-md-5 container">
-  {% if form.instance.id %}
-  <h2>Edit Home</h2>
-  {% else %}
-  <h2>Create Home</h2>
-  {% endif %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.media}}
-    {{form.as_p}}
-    <button type="submit" class="btn btn-success"  ><i class="fa-solid fa-circle-plus fa-beat"></i>   Create</button>
-    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-danger">
-      <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
-  </form>
-</div>
-  {% endblock content %}
+    <div class="" style="margin-top: 10rem; background: white">
+        <div class="col col-md-8 offset-2 justify-content-center">
+            {% if form.instance.id %}
+                <h2>Edit Home</h2>
+            {% else %}
+                <h2>Create Home</h2>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus fa-beat"></i> Create
+                </button>
+                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger">
+                    <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

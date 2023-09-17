@@ -1,15 +1,18 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class="col col-md-5 container">
+    <div class="" style="margin-top: 10rem; background: white">
 
-  <form method="post" action="">
-    {% csrf_token %}
-    <h3>Are u sure you want to delete <b>"{{video.title}}</b> and video"?</h3>
-  
-    <input type="submit" class= "btn btn-success" value="Confirm" />
-    <a href="{{request.META.HTTP_REFERER}}"  class= "btn btn-danger">Go Back</a>
-  </form>
+        <div class="col col-md-8 offset-2 justify-content-center">
+            <form method="post" action="">
+                {% csrf_token %}
+                <h3>Are u sure you want to delete <b>"{{ video.title }}</b> and video"?</h3>
+
+                <input type="submit" class="btn btn-success" value="Confirm"/>
+                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger">Go Back</a>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
 
   
