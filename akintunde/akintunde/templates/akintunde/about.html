@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-    <section class="section-about mt-60 bg-inverse" id="s1">
+    <section class="section-about mt-60 bg-inverse-frosted" id="s1">
         <header>
             <h1 class="text-center text-lg-center text-white display-1" style="font-family: 'Rochester', cursive;">about</h1>
 
@@ -32,7 +32,7 @@
                             <a class="btn btn-danger" href="{% url 'delete-about' bio.id %}"><i
                                     class="fa-solid fa-trash"></i></a>
                         {% endif %}
-                        <p class="text-light">{{ bio.biography|safe }}</p>
+                        <p class="text-white" style="color: white;">{{ bio.biography|safe }}</p>
                     {% endfor %}
                 </div>
             </div>

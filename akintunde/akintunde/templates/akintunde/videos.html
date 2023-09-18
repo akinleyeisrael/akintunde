@@ -6,48 +6,51 @@
 
 
     <header class="xl v-center bg-img jarallax height-90 bg-body" data-jarallax data-speed="0.8"
-            style="background-size: contain; background-image: url({% static 'images/pix50.jpg' %});">
+            style="background: url({% static 'images/pix14.jpg' %}) no-repeat center/cover;">
         <div class="container text-center">
-            <h1 class="page-title text-white display-1" Style="font-size: 11vw; font-family: 'Rochester', cursive;">videos</h1>
+            <h1 class="page-title text-white display-1" Style="font-size: 11vw; font-family: 'Rochester', cursive;">
+                videos</h1>
         </div><!-- / container -->
     </header>
 
+    <section id="section">
+        <div class="main-container  bg-inverse-frosted">
+            <section class="section-video mt-20">
+                <div class="container">
 
-    <div class="main-container  bg-inverse">
-        <section class="section-video mt-20">
-            <div class="container">
-
-                {% if request.user.is_authenticated %}
-                    <a class="btn btn-success mb-2" href="{% url 'video-upload' %}">Add Video</a>
-                {% endif %}
-                <div class="row">
-                    {% for video in videos %}
-                        <div class="col-md-6 web-design">
-                            <figure class="portfolio-item shadow-lg ">
-                                <div class="hovereffect">
-                                    <div class="plyr__video-embed" id="player">
-                                        {% video video.videourl 'small' %}"
-                                    </div>
-                                </div><!-- / hovereffect -->
-                            </figure><!-- / portfolio-item -->
-                            <i class="align-center text-white"
-                               style="font-family: 'Rochester', cursive; ">{{ video.title }}</i>
-                            <p style="color: white">{{ video.upload_date|date }} </p>
-                            {% if request.user.is_authenticated %}
-                                <a href="{% url 'edit-video' video.id %}" class="btn btn-info btn-sm"><i
-                                        class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="{% url 'delete-video' video.id %}"
-                                   class="btn btn-danger btn-sm js-delete-video"><i
-                                        class="fa-solid fa-trash"></i></a>
-                            {% endif %}
-                        </div><!-- / column -->
-                    {% empty %}
-                        <h1 class="text-center alert alert-warning mt-2">No videos available</h1>
-                    {% endfor %}
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-success mb-2" href="{% url 'video-upload' %}">Add Video</a>
+                    {% endif %}
+                    <div class="row">
+                        {% for video in videos %}
+                            <div class="col-md-6 web-design">
+                                <figure class="portfolio-item shadow-lg ">
+                                    <div class="hovereffect">
+                                        <div class="plyr__video-embed" id="player">
+                                            {% video video.videourl 'small' %}"
+                                        </div>
+                                    </div><!-- / hovereffect -->
+                                </figure><!-- / portfolio-item -->
+                                <i class="align-center text-white"
+                                   style="font-family: 'Rochester', cursive; ">{{ video.title }}</i>
+                                <p style="color: white">{{ video.upload_date|date }} </p>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'edit-video' video.id %}" class="btn btn-info btn-sm"><i
+                                            class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{% url 'delete-video' video.id %}"
+                                       class="btn btn-danger btn-sm js-delete-video"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                {% endif %}
+                            </div><!-- / column -->
+                            {% empty %}
+                            <h1 class="text-center alert alert-warning mt-2">No videos available</h1>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    </section>
+
 
     {% include 'footer.html' %}
 {% endblock content %}

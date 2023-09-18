@@ -408,6 +408,5 @@ def deleteExhibition(request, pk):
     if request.method == "POST":
         exhibit.delete()
         return redirect('exhibition')
-    context = {'exhibit':exhibit}
+    context = {'exhibit': exhibit}
     return render(request, 'akintunde/exhibition/delete_form.html', context)
-

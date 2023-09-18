@@ -35,7 +35,7 @@ class Category(models.Model):
 
 class Gallery(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)  # must specify leng
     image = models.ImageField(upload_to='images/gallery', blank=True)
     image_caption = models.CharField(max_length=200, null=True, blank=True)
