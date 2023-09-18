@@ -1,1 +1,51 @@
 {% extends 'main.html' %}
+
+{% block content %}
+
+    <section class="exhibition">
+        <div class="bg-inverse-frosted">
+            <div class="col-lg-6 offset-lg-3 align-middle justify-content-center" style="height: 25rem">
+                <div class="justify-content-center" style="padding-top: 5rem">
+                    <h5 class="display-6 text-white" style="font-family: 'Rochester',cursive; font-weight: bold">
+                        Exhibitions</h5>
+                    <h1 class="display-5 text-white" style="font-family: 'Rochester',cursive">Exhibitions showcasing
+                        stories that
+                        is deeply rooted in the concept of personal expression, serving as a canvas for my thoughts,
+                        emotions, and experiences.</h1>
+                </div>
+            </div>
+
+        </div>
+        {% if request.user.is_authenticated %}
+            <a class="btn btn-success" href="{% url 'create-exhibition' %}">Add Exhibition</a>
+        {% endif %}
+        {% for exhibit in exhibitions %}
+            <div class="col-md-12 overflow-hidden" style="height: 25rem;">
+                <div class="row" style="height: 26rem">
+                    {% if exhibit.image %}
+                        <div class="col-xs-2 col-sm-12 col-md-8 col-lg-8 bg-image-exhibition"
+                             style="background: url({{ exhibit.image.url }}) no-repeat center/cover;"></div>
+                    {% endif %}
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 border-top border-secondary  bg-black">
+                        <div class="wrapper-exhibit" style="width: 100%; padding: 6rem 0 0 4rem;">
+                            <div class="exhibition-title">
+                                <h2 class="text-white" style="font-family: 'Rochester', cursive">Title</h2>
+                            </div>
+                            <p style="word-break: break-all; " class="pt-20 text-white">theis is
+                                {{ exhibit.description }}</p>
+                        </div>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="p-2">
+                            <a class="btn btn-info" href="{% url 'edit-exhibition' exhibit.id %}">Edit
+                                Exhibition</a>
+                            <a class="btn btn-danger" href="{% url 'delete-exhibition' exhibit.id %}">Delete
+                                Exhibition</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    {% include 'footer.html' %}
+{% endblock %}

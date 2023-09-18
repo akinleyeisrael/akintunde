@@ -84,10 +84,13 @@ class Video(models.Model):
 
 
 class Exhibition(models.Model):
-    image = models.ImageField(upload_to='images/exhibition', blank=True)
+    image = models.ImageField(upload_to='images/exhibition', blank=False)
     title = models.CharField(max_length=100)
-    description = RichTextField(null=True, blank=True)
+    description = RichTextUploadingField(null=True, blank=True)
     upload_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
 
 
 # foreign

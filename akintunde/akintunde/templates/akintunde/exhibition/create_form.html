@@ -7,15 +7,16 @@
 
         <div class="col col-md-8 offset-2 justify-content-center">
             {% if form.instance.id %}
-                <h2>Edit category</h2>
+                <h2>Edit Exhibition</h2>
             {% else %}
-                <h2>Create category</h2>
+                <h2>Create Exhibition</h2>
             {% endif %}
 
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {{ form.as_p }}
+                {{ form.media }}
 
                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus fa-beat"></i> Create
                 </button>
@@ -27,4 +28,4 @@
     </div>
 
 {% endblock content %}
-  
+

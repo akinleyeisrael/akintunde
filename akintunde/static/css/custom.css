@@ -216,6 +216,13 @@ footer i {
     position: sticky;
 }
 
-/*Home*/
+/*Exhibition*/
+@media (max-width: 600px) {
+    .bg-image-exhibition {
+        height: 100%;
+    }
+}
+
+/*exhibition end*/
 
 

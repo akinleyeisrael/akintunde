@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import About, Gallery, Category, Blog, Contact, Video, Home
+from .models import About, Gallery, Category, Blog, Contact, Video, Home, Exhibition
 
 
 class HomeForm(forms.ModelForm):
@@ -86,4 +86,15 @@ class VideoForm(forms.ModelForm):
             'videourl': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter youtube URL(link)'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
             'video_file': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Video File'})
+        }
+
+
+class ExhibitionForm(forms.ModelForm):
+    class Meta:
+        model = Exhibition
+        fields = "__all__"
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title Exhibition'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'upload image'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         }

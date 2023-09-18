@@ -7,8 +7,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import (AboutForm, BlogForm, CategoryForm, ContactForm, GalleryForm, HomeForm, VideoForm)
-from .models import About, Blog, Category, Gallery, Home, Video
+from .forms import (AboutForm, BlogForm, CategoryForm, ContactForm, GalleryForm, HomeForm, VideoForm, ExhibitionForm)
+from .models import About, Blog, Category, Gallery, Home, Video, Exhibition
 
 
 # Create your views here.
@@ -349,6 +349,7 @@ def edit_video(request, pk):
     return render(request, "akintunde/video/upload_video.html", context)
 
 
+@login_required(login_url="login")
 def deleteVideo(request, pk):
     try:
         video = Video.objects.get(id=pk)
@@ -369,3 +370,44 @@ def deleteVideo(request, pk):
 
     context = {"video": video}
     return render(request, "akintunde/video/delete_video.html", context)
+
+
+def exhibition(request):
+    exhibitions = Exhibition.objects.all()
+    context = {'exhibitions': exhibitions}
+    return render(request, "akintunde/exhibition.html", context)
+
+
+@login_required(login_url="login")
+def createExhibition(request):
+    form = ExhibitionForm()
+    if request.method == "POST":
+        form = ExhibitionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("exhibition")
+    context = {"form": form}
+    return render(request, "akintunde/exhibition/create_form.html", context)
+
+
+@login_required(login_url="login")
+def editExhibition(request, pk):
+    exhibit = Exhibition.objects.get(id=pk)
+    form = ExhibitionForm(instance=exhibit)
+    if request.method == "POST":
+        form = ExhibitionForm(request.POST, request.FILES, instance=exhibit)
+        if form.is_valid():
+            form.save()
+            return redirect("exhibition")
+    context = {"form": form}
+    return render(request, "akintunde/exhibition/create_form.html", context)
+
+
+def deleteExhibition(request, pk):
+    exhibit = Exhibition.objects.get(id=pk)
+    if request.method == "POST":
+        exhibit.delete()
+        return redirect('exhibition')
+    context = {'exhibit':exhibit}
+    return render(request, 'akintunde/exhibition/delete_form.html', context)
+
