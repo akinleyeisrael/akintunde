@@ -14,4 +14,3 @@ images.forEach(function (image) {
     });
 });
 
-document.images.style.webkitTouchCallout='none';
