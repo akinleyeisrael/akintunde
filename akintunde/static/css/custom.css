@@ -1,4 +1,6 @@
-
+html, body {
+    height: 100%;
+}
 @font-face {
     font-family: dancing-script;
     src: url(akintunde/static/fonts/dancing-script/DancingScript-VariableFont_wght.ttf);
