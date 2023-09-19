@@ -4,7 +4,7 @@
 {% block content %}
 
 
-    <section class="col-xs-2 col-sm-12">
+    <section class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 0">
         <!-- Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper img-fluid">
@@ -50,19 +50,6 @@
             </div>
             <div class="swiper-controller">
                 <div class="slider-controller">
-                    {% comment %}
-                        <div class="swiper-button-prev slider-arrow">
-					<span class="material-symbols-outlined icon ">
-						arrow_back
-					</span>
-                        </div>
-
-                        <div class="swiper-button-next slider-arrow">
-					<span class="material-symbols-outlined icon">
-						arrow_forward
-					</span>
-                        </div>  {% endcomment %}
-
                     <div class="swiper-pagination"></div>
 
                 </div>
@@ -97,9 +84,9 @@
                                 style="font-family: 'Rochester', cursive;  font-size: 38px">
                                 Anthropologist|Photographer|Visual Analyst</h4>
                             {% for obj in home %}
-                                <p class="text-white header-text fw-regular fs-16 mb-40"
-                                >{{ obj.description|truncatechars_html:730|safe }}
-                                </p>
+                                <span style="color: white" class="text-white header-text fw-regular fs-16 mb-40"
+                                >{{ obj.description|truncatechars_html:750|safe }}
+                                </span>
                                 <a href="{% url 'about' %}" class="btn btn-sm btn-outline-white"><i class=""></i> <span
                                         class="va-middle">READ MORE</span></a>
                                 {% if request.user.is_authenticated %}

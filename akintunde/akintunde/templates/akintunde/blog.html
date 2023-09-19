@@ -3,15 +3,15 @@
 {% block content %}
 
     <header class="xl v-center bg-img jarallax height-90 " data-jarallax data-speed="0.8"
-            style="background: url({% static 'images/pix11.jpg' %}) no-repeat center/cover; ">
+            style="background: url({% static 'images/pix11.jpg' %})  center/cover; ">
         <div class="container text-center">
             <h1 class="page-title text-white  text-lg-center display-1"
                 style="font-size: 11vw; font-family: 'Rochester', cursive;">
-                BLOG</h1>
+                blog</h1>
         </div><!-- / container -->
     </header>
 
-    <section id="section">
+
         <div class="main-container p-0 bg-inverse-frosted">
             <section id="blog" class="lg">
                 <div class="container">
@@ -41,7 +41,7 @@
                                                         <i class="fas fa-at fs-12 va-middle ml-5 text-light"></i>
                                                         <span class="va-middle text-light">Akintunde</span>
                                                     </p><!-- / post-meta -->
-                                                    <p class="fs-14 mb-20 text-white" style="color: white">
+                                                    <p class="fs-14 mb-20" style="color: white;">
                                                         {{ blog.description|truncatechars_html:120|safe }}</p>
                                                     <a href="{% url 'blog-extended' blog.id %}"
                                                        class="btn btn-sm btn-outline-white"><span
@@ -127,7 +127,7 @@
             </section><!-- / blog -->
         </div><!-- main-container -->
 
-    </section>
+
 
 
 

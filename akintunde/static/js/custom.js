@@ -13,3 +13,4 @@ images.forEach(function (image) {
         e.preventDefault();
     });
 });
+
