@@ -13,3 +13,5 @@ images.forEach(function (image) {
         e.preventDefault();
     });
 });
+
+document.images.style.webkitTouchCallout='none';
